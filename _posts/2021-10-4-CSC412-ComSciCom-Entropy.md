@@ -3,7 +3,7 @@ layout: post
 title: Trying to Understand Entropy
 ---
 
-This post is going to try to answer the question: "What exactly is entropy"? Well, mathematically, the question is answered easily enough, Entropy, $H$ is defined for a probability distribution $p(x)$, by the formula below:
+This post is going to try to answer the question: "What exactly is entropy"? Well, mathematically, the question is answered easily enough, Entropy, $$H$$ is defined for a probability distribution $$p(x)$$, by the formula below:
 
 
 
