@@ -3,8 +3,11 @@ layout: post
 title: Trying to Understand Entropy
 ---
 
-This post is going to try to answer the question: "What exactly is entropy"? Well, mathematically, the question is answered easily enough, Entropy, $$H$$ is defined for a probability distribution $$p(x)$$, by the formula below:
+This post is going to try to answer the question: "What exactly is entropy"? Well, mathematically, the question is answered easily enough, Entropy, $$H$$ is defined for a probability distribution $p(x)$, by the formula below:
 
+$$\begin{equation}
+H[p] = - \sum_i p(x_i) \log p(x_i)
+\end{equation}$$
 
 
 Ok, but what actually $is$ the Entropy? How can we understand it? It is the cornerstone of Information theory, underlies the 2nd law of thermodynamics, and appears all over the place in Machine Learning. 
