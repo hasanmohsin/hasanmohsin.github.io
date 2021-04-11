@@ -63,7 +63,7 @@ $$\begin{align}
 
 This derivation leads us to the entropy: $H[\mathbf{p}] = \frac{1}{N} \log (W(\mathbf{p}))$. The entropy of a distribution is a quantity which reflects how likely that distribution is, under the principle of indifference.
 
-We determine our probability $\mathbf{p}^{\*}$ by maximizing the entropy (since it is equivalent to maximizing $\log W(\mathbf{p})$. We can do this by simply setting the gradient $\nabla_\mathbf{p} H = 0$, since the function $H$ is convex. Each $p(x_k)$ is then determined as:
+We determine our probability $\mathbf{p}^{\*}$ by maximizing the entropy (since it is equivalent to maximizing $\log W(\mathbf{p})$, under the constraint that $\mathbf{p}$ be normalized, ie. $\sum_{i=1}^m p(x_i) = 1$. We can do this by simply setting the gradient $\nabla_\mathbf{p} H = 0$, since the function $H$ is convex. Each $p(x_k)$ is then determined as:
 
 $$begin{align}
 \frac{\partial}{\partial p(x_k)} H &= 0\\
@@ -73,7 +73,7 @@ $$begin{align}
 p(x_k) &= \exp(-1) = \mathrm{constant}
 \end{align}$$
 
-We get the same number for each $p(x_i)$. Note that these are not normalized probabilities. That is because we never explicitly included the constraint that $\sum_{i=1}^{m} p(x_i) = 1$ in our optimization. We would do so in practice using Lagrange multipliers. In this case, because it is simple, we can see that upon normalization, we'd get a uniform distribution over the $m$ outcomes, so that $p(x_i) = \frac{1}{m}$. 
+We get the same number for each $p(x_i)$. Next we must enforce the constraint. Since the constraint is simple (and doesn't influence the optimization), we can do it manually. Upon normalization, we get a uniform distribution over the $m$ outcomes, so that $p(x_i) = \frac{1}{m}$. 
 
 This is exactly the same result the regular principle of indifference gives us. This makes sense, we'd have cause for concern if we got any other result! 
 
@@ -81,19 +81,26 @@ But in this case what was the point of doing this long calculation? Both methods
 
 For instance, suppose that in the above problem, we were given one extra piece of information: the mean outcome $\mathbb{E}[x] = \bar{x}$. This means that the probability assignments $\mathbf{p}$ must satisfy $\sum_{i=1}^{m} x_i p(x_i) = \bar{x}$. Now we must pick the probability assignment $\mathbf{p}$, under this constraint, which is most likely.
 
-There isn't a straightforward way of doing this if we were using the regular principle of indifference, but using the entropy, it is easy. We add in the constraint as lagrange multiplier and optimize the objective:
+There isn't a straightforward way of doing this if we were using the regular principle of indifference, but using the entropy, it is easy. We add in the constraint as Lagrange multiplier and maximize the objective $H[\mathbf{p}] + \lambda (\bar{x} - \sum_{i=1}^{m} x_i p(x_i))$. Note that we had no need of adding a similar constraint multiplier for the normalization constraint, since it is much simpler. 
 
-$$\begin{align}
+We can again solve this problem by setting the gradient to 0 with respect to $\mathbf{p}$ and $\lambda$. We get as our solution the distribution: $p(x_i) = \exp(-\lambda x_i)/Z$. This is the maximum entropy (and therefore the *most likely*) distribution with the given mean $\bar{x}$.
 
-\end{align}$$
+## Why does it show up in Physics
 
-We can again solve this problem by setting the gradient to 0. We get the Gibbs distribution.
+The path that we took to derive the entropy was first discovered in statistical mechanics. The problem of interest there was the following: we have a system of many, small, interacting particles, and we can only measure the mean total energy $\bar{E}$. We are interested in writing down a probability distribution over the possible energies for each particle, $E_i$. Trying to estimate this distribution by observing the state of any particle is basically impossible, since we can't make measurements precisely for such a small object. 
 
-## Its use in ML
+Thus, we must come up with the most "reasonable" distribution over the set $\\{E_1, E_2, ... ,E_m\\}$, under the constraint that the average energy be $\bar{E}$. This exactly mirrors the last example we calculated, so that we know the solution must be  $p(x_i) = \exp(-\lambda E_i)/Z$. Indeed, this distribution is named the "Gibbs distribution" (as well as the "softmax distribution). 
+
+We obtained this distribution because we thought it was the most likely, but this guess works out empirically. For instance, this, combined with other definitions of physics, such as pressure and volume, lets us derive the ideal gas law, which we know to be true. 
+
+The interpretation of entropy as characterizing the number of ways 
+
 
 ## Why does it show up in Information theory
 
-## Why does it show up in Physics
+Information theory is concerned with efficient communication. Suppose we wish to send a message, which we'll model as the output of some random source. The source outputs some character from the alphabet $\\{ x_1, x_2,.. x_m \\}$ at random, with probability $p(x_i)$. We wish to 
+
+Here, Shannon made the key observation that communication is related to choosing between a set of possible messages, rather than the content of those messages. 
 
 ## Conclusion
 
