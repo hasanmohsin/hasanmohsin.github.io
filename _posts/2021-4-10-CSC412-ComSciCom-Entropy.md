@@ -61,10 +61,9 @@ $$\begin{align}
 &= N H[ \mathbf{p} ]
 \end{align}$$
 
-Therefore, we see that the entropy $H[\mathbf{p}]$ is a quantity which reflects the number of sequences leading to the probability assignment $\mathbf{p}$.
-We have an additional factor of $N$, but that doesn't effect our optimization, so we can ignore it.
+This derivation leads us to the entropy: $H[\mathbf{p}] = \frac{1}{N} \log (W(\mathbf{p}))$. The entropy of a distribution is a quantity which reflects how likely that distribution is, under the principle of indifference.
 
-We determine our probability $\mathbf{p}^{\*}$ by maximizing the entropy. We can do this by simply setting the gradient $\nabla_\mathbf{p} H = 0$, since the function $H$ is convex. Each $p(x_k)$ is then determined as:
+We determine our probability $\mathbf{p}^{\*}$ by maximizing the entropy (since it is equivalent to maximizing $\log W(\mathbf{p})$. We can do this by simply setting the gradient $\nabla_\mathbf{p} H = 0$, since the function $H$ is convex. Each $p(x_k)$ is then determined as:
 
 $$begin{align}
 \frac{\partial}{\partial p(x_k)} H &= 0\\
@@ -74,11 +73,15 @@ $$begin{align}
 p(x_k) &= \exp(-1) = \mathrm{constant}
 \end{align}$$
 
-We get the same number for each $p(x_i)$. Note that these are not normalized probabilities. That is because we never explicitly included the constraint that $\sum_{i=1}^{m} p(x_i) = 1$ in our optimization. We would do so in practice using Lagrange multipliers. In this case, because it is simple, we can see that upon normalization, we'd get a uniform distribution over the $m$ outcomes. 
+We get the same number for each $p(x_i)$. Note that these are not normalized probabilities. That is because we never explicitly included the constraint that $\sum_{i=1}^{m} p(x_i) = 1$ in our optimization. We would do so in practice using Lagrange multipliers. In this case, because it is simple, we can see that upon normalization, we'd get a uniform distribution over the $m$ outcomes, so that $p(x_i) = \frac{1}{m}$. 
 
-This is exactly the same result the regular principle of indifference gives us. This makes sense, we'd have cause for concern if we got any other result. 
+This is exactly the same result the regular principle of indifference gives us. This makes sense, we'd have cause for concern if we got any other result! 
 
-But in this case what was the point of doing this long calculation? Both methods allowed us to pick the most "reasonable" probability assignments. The difference is that 
+But in this case what was the point of doing this long calculation? Both methods allowed us to pick the most "reasonable" probability assignments when we lack information. The difference is that by phrasing the problem as maximizing entropy, we can easily work with constraints.
+
+For instance, suppose that in the above problem, we were given one extra piece of information: the mean outcome $\mathbb{E}[x] = \bar{x}$. This means that the probability assignments $\mathbf{p}$ must satisfy $\sum_{i=1}^{m} x_i p(x_i) = \bar{x}$. Now we must pick the probability assignment $\mathbf{p}$, under this constraint, which is most likely.
+
+There isn't a straightforward way of doing this if we were using the regular principle of indifference, but using the entropy, it is easy. We add in the constraint 
 
 #First edit.
 #Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
