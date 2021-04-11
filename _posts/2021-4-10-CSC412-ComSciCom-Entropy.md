@@ -24,7 +24,7 @@ An intuitive solution to the problem is that if we don't know anything at all ab
 
 ### Generalizing the Principle
 
-Let's apply the principle in a different, slightly more general way. Say we ran the experiment $N$ times. We'd get some sequence of $N$ outcomes like $(x_{m-2}, x_1, x_1, x_3, x_m,...)$, where some outcomes will repeat. Given such a sequence, we can count the number of times outcome $x_i$ occurs, and call it $n_i$. Now, if we ran the experiment $N$ times, and we saw outcome $x_i$ occur $n_i$ times, then we can estimate the probability $p(x_i) \approx \frac{n_i}{N}$, We would expect that the larger $N$ is, the closer we'll get to the true probability. If we had observed some other sequence of $N$ outomces, our probability estimates will be slightly different. In this way, the observed sequence induces an assignment of probabilities.
+Let's apply the principle in a different, slightly more general way. Say we ran the experiment $N$ times, where $N$ is large. We'd get some sequence of $N$ outcomes like $(x_{m-2}, x_1, x_1, x_3, x_m,...)$, where some outcomes will repeat. Given such a sequence, we can count the number of times outcome $x_i$ occurs, and call it $n_i$. Now, if we ran the experiment $N$ times, and we saw outcome $x_i$ occur $n_i$ times, then we can estimate the probability $p(x_i) \approx \frac{n_i}{N}$, We would expect that the larger $N$ is, the closer we'll get to the true probability. If we had observed some other sequence of $N$ outomces, our probability estimates will be slightly different. In this way, the observed sequence induces an assignment of probabilities.
 
 Now keep in mind the crux of the problem: we can't actually run these experiments, and we'll need to reason about these sequences in a different way. In fact, we'll appeal to the principle of indifference **on these sequences**. Since we don't have any other information, we'll say that all sequences are as likely to occur as each other. 
 
@@ -34,6 +34,7 @@ $$\begin{align}
 P(\mathbf{p}) &\propto W(\mathbf{p}) \\
 &= \frac{W(\mathbf{p})}{Z}
 \end{align}$$
+Where $Z$ is some normalizing factor.
 
 To calculate $W(\mathbf{p})$, we can do some combinatorics. We are interested in the number of ways we can choose $n_1$ objects of one type, $n_2$ of another type, ..., and $n_m$ of a last type, out of a total group of $N$ items. Consider a certain specific sequence which has the prescribed outcome counts. There are $N!$ possible permutations of this sequence. If $x_1$ occurs $n_1$ times, then there are $n_1!$ possible ways we can shuffle it around while giving the same sequence. Shuffling around within each outcome gives the same sequence, so the $N!$ overcounts by a factor of $n_1! n_2! n_3! ... n_m!$. Correcting for this gives us $W(\mathbf{p})$: 
 
@@ -42,13 +43,42 @@ $$\begin{align} W(\mathbf{p}) &= \frac{N!}{n_1! n_2!...n_m!}
 
 Now that we have a complete description of the probability, we can ask for the **most likely** assignment $\mathbf{p^{\*}} = \mathrm{argmax} \; P(\mathbf{p})$. We will pick this $\mathbf{p^{\*}}$ as the outcome probabilities.
 
-We can see that this involves maximizing $W(\mathbf{p})$. Since $\log$ is a monotonically increasing function, we can instead maximize the quantity $\log W$.
+We can see that this involves maximizing $W(\mathbf{p})$. Since $\log$ is a monotonically increasing function, we can instead maximize the quantity $\log W(\mathbf{p})$.
 
 $$\begin{align}
-\mathbf{log}
+\log (W(\mathbf{p})) &= \log\Big( \frac{N!}{n_1! n_2!...n_m!} \Big) \\
+&= \log(N!) - \sum_{i=1}^{m} \log(n_i!) 
 \end{align}$$
 
+Next, we take $N$ large (and consequently $n_i$ large), and apply Stirling's approximation for the factorial: $\log(n!) \approx n\log(n) - n$.
 
+$$\begin{align}
+\log (W(\mathbf{p})) &= N\log N - N - \sum{i=1}^{m} (n_i \log n_i - n_i) \\
+&= \sum_{i=1}^{m} (n_i\log N - n_i) - \sum{i=1}^{m} (n_i \log n_i - n_i) \\
+&= \sum_{i=1}^{m} (n_i \log N - n_i \log n_i) \\
+&= -N\sum_{i=1}^{m} \frac{n_i}{N} \log (\frac{n_i}{N}) \\
+&= -N \sum{i=1}^{m} p(x_i) \log p(x_i) \\
+&= N H[ \mathbf{p} ]
+\end{align}$$
+
+Therefore, we see that the entropy $H[\mathbf{p}]$ is a quantity which reflects the number of sequences leading to the probability assignment $\mathbf{p}$.
+We have an additional factor of $N$, but that doesn't effect our optimization, so we can ignore it.
+
+We determine our probability $\mathbf{p}^{\*}$ by maximizing the entropy. We can do this by simply setting the gradient $\nabla_\mathbf{p} H = 0$, since the function $H$ is convex. Each $p(x_k)$ is then determined as:
+
+$$begin{align}
+\frac{\partial}{\partial p(x_k)} H &= 0\\
+- \frac{\partial}{\partial p(x_i)} \sum{i=1}^{m} p(x_i) \log p(x_i) &= 0 \\
+- \frac{\partial}{\partial p(x_k)} \sum{i=1}^{m} p(x_i) \log p(x_i) &= 0\\
+- \log p(x_k) - \frac{p(x_k)}{p(x_k)} &= 0 \\
+p(x_k) &= \exp(-1) = \mathrm{constant}
+\end{align}$$
+
+We get the same number for each $p(x_i)$. Note that these are not normalized probabilities. That is because we never explicitly included the constraint that $\sum_{i=1}^{m} p(x_i) = 1$ in our optimization. We would do so in practice using Lagrange multipliers. In this case, because it is simple, we can see that upon normalization, we'd get a uniform distribution over the $m$ outcomes. 
+
+This is exactly the same result the regular principle of indifference gives us. This makes sense, we'd have cause for concern if we got any other result. 
+
+But in this case what was the point of doing this long calculation? Both methods allowed us to pick the most "reasonable" probability assignments. The difference is that 
 
 #First edit.
 #Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
