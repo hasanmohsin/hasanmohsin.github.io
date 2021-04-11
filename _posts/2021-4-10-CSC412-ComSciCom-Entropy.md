@@ -53,8 +53,8 @@ $$\begin{align}
 Next, we take $N$ large (and consequently $n_i$ large), and apply Stirling's approximation for the factorial: $\log(n!) \approx n\log(n) - n$.
 
 $$\begin{align}
-\log (W(\mathbf{p})) &= N\log N - N - \sum{i=1}^{m} (n_i \log n_i - n_i) \\
-&= \sum_{i=1}^{m} (n_i\log N - n_i) - \sum{i=1}^{m} (n_i \log n_i - n_i) \\
+\log (W(\mathbf{p})) &\approx N\log N - N - \sum{i=1}^{m} (n_i \log n_i - n_i) \\
+&= \sum_{i=1}^{m} (n_i\log N - n_i) - \sum_{i=1}^{m} (n_i \log n_i - n_i) \\
 &= \sum_{i=1}^{m} (n_i \log N - n_i \log n_i) \\
 &= -N\sum_{i=1}^{m} \frac{n_i}{N} \log (\frac{n_i}{N}) \\
 &= -N \sum{i=1}^{m} p(x_i) \log p(x_i) \\
@@ -66,11 +66,12 @@ This derivation leads us to the entropy: $H[\mathbf{p}] = \frac{1}{N} \log (W(\m
 We determine our probability $\mathbf{p}^{\*}$ by maximizing the entropy (since it is equivalent to maximizing $\log W(\mathbf{p})$, under the constraint that $\mathbf{p}$ be normalized, ie. $\sum_{i=1}^m p(x_i) = 1$. We can do this by simply setting the gradient $\nabla_\mathbf{p} H = 0$, since the function $H$ is convex. Each $p(x_k)$ is then determined as:
 
 $$begin{align}
-\frac{\partial}{\partial p(x_k)} H &= 0\\
-- \frac{\partial}{\partial p(x_i)} \sum{i=1}^{m} p(x_i) \log p(x_i) &= 0 \\
-- \frac{\partial}{\partial p(x_k)} \sum{i=1}^{m} p(x_i) \log p(x_i) &= 0\\
-- \log p(x_k) - \frac{p(x_k)}{p(x_k)} &= 0 \\
-p(x_k) &= \exp(-1) = \mathrm{constant}
+\frac{\partial}{\partial p(x_k)} H &= 0 \\
+-\frac{\partial}{\partial p(x_i)} \sum{i=1}^{m} p(x_i) \log p(x_i) &= 0 \\
+-\frac{\partial}{\partial p(x_k)} \sum{i=1}^{m} p(x_i) \log p(x_i) &= 0\\
+-\log p(x_k) - \frac{p(x_k)}{p(x_k)} &= 0 \\
+p(x_k) &= \exp(-1) \\
+       &= \mathrm{constant}
 \end{align}$$
 
 We get the same number for each $p(x_i)$. Next we must enforce the constraint. Since the constraint is simple (and doesn't influence the optimization), we can do it manually. Upon normalization, we get a uniform distribution over the $m$ outcomes, so that $p(x_i) = \frac{1}{m}$. 
@@ -89,18 +90,18 @@ We can again solve this problem by setting the gradient to 0 with respect to $\m
 
 The path that we took to derive the entropy was first discovered in statistical mechanics. The problem of interest there was the following: we have a system of many, small, interacting particles, and we can only measure the mean total energy $\bar{E}$. We are interested in writing down a probability distribution over the possible energies for each particle, $E_i$. Trying to estimate this distribution by observing the state of any particle is basically impossible, since we can't make measurements precisely for such a small object. 
 
-Thus, we must come up with the most "reasonable" distribution over the set $\\{E_1, E_2, ... ,E_m\\}$, under the constraint that the average energy be $\bar{E}$. This exactly mirrors the last example we calculated, so that we know the solution must be  $p(x_i) = \exp(-\lambda E_i)/Z$. Indeed, this distribution is named the "Gibbs distribution" (as well as the "softmax distribution). 
+Thus, we must come up with the most "reasonable" distribution over the set $\\{E_1, E_2, ... ,E_m\\}$, under the constraint that the average energy be $\bar{E}$. This exactly mirrors the last example we calculated, so that we know the solution must be  $p(x_i) = \exp(-\lambda E_i)/Z$. Indeed, this distribution is named the "Gibbs distribution" (as well as the "softmax distribution). The entropy of this distribution is equal (within a conversion of units) to the thermodynamic entropy, usually denoted $S$.
 
 We obtained this distribution because we thought it was the most likely, but this guess works out empirically. For instance, this, combined with other definitions of physics, such as pressure and volume, lets us derive the ideal gas law, which we know to be true. 
 
-The interpretation of entropy as characterizing the number of ways 
+The interpretation of entropy as the number of ways a probability distribution can occur is also fruitful in describing the 2nd law of thermodynamics. The 2nd law is fairly complicated in general, but a special case states that as a system evolves in time, its entropy tends to increase. Using our notion of entropy, we can understand why this must be: the 
 
 
 ## Why does it show up in Information theory
 
-Information theory is concerned with efficient communication. Suppose we wish to send a message, which we'll model as the output of some random source. The source outputs some character from the alphabet $\\{ x_1, x_2,.. x_m \\}$ at random, with probability $p(x_i)$. We wish to 
+Information theory is concerned with efficient communication. Suppose we wish to send a message, which we'll model as the output of some random source. The source outputs some character from the alphabet $\\{ x_1, x_2,.. x_m \\}$ at random, with probability $p(x_i)$. 
 
-Here, Shannon made the key observation that communication is related to choosing between a set of possible messages, rather than the content of those messages. 
+Here, Shannon made the key observation that, as far as efficiency is concerned, communication is related to choosing between a set of possible messages, rather than the content of those messages. If our source generates messages of $N$ characters, then to "communicate a message" means specifying one out of all possible messages. If $N$ is large then every possible message must respect the probability distribution of the source. How many such messages are there? We already made this calculation in a section above: there are $W(\mathbf{p})$ such messages. 
 
 ## Conclusion
 
