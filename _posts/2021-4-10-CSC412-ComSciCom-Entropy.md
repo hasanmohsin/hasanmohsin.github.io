@@ -103,7 +103,24 @@ Information theory is concerned with efficient communication. Suppose we wish to
 
 Here, Shannon made the key observation that, as far as efficiency is concerned, communication is related to choosing between a set of possible messages, rather than the content of those messages. If our source generates messages of $N$ characters, then to "communicate a message" means specifying one out of all possible messages. If $N$ is large then every possible message must respect the probability distribution of the source. How many such messages are there? We already made this calculation in a section above: there are $W(\mathbf{p})$ such messages. 
 
+To communicate these messages, we simply label each one with an index $i$, and send the associated the number. We assume that at the other end, the receiver knows which message corresponds to which index. If we represent each index $i$ as a binary number, how many bits will we need to send? Each possible message must get a unique index, so that the index number must cover $W(\mathbf{p})$ possibilities. A binary number requires $\log_2 W(\mathbf{p})$ bits to represent $W(\mathbf{p})$ possibilities. 
+
+Thus communicating one message of length $N$ requires $\log_2 W(\mathbf{p})$ bits. The average number of bits we must send per character, $L$, is:
+
+$$\begin{align}
+$L$ &= \frac{1}{N} \log_2 W(\mathbf{p}) \\
+&= \frac{1}{log 2} \frac{1}{N}  \log W(\mathbf{p}) \\
+&= \frac{1}{log 2} H[\mathbf{p}] \\
+&= H_2 [\mathbf{p}]
+\end{align}$$
+
+Where again, we see that the entropy naturally arises. We have an extra factor of $\frac{1}{\log 2}$, but we can interpret this as the unit conversion factor to bits, where we label the entropy as $H_2 [\mathbf{p}]$. Indeed some authors choose to work without the conversion, and say that the entropy is in units of "nats" rather than "bits". 
+
+Thus, this encoding scheme lets us send the message in $H_2[\mathbf{p}]$. Can we get away with using less bits? Well, that would require some possible messages to share the same index. This would mean that, for those messages, the receiver wouldn't be able to recover the exact message we meant to send. Therefore, we cannot reduce the number of bits (without introducing some loss of meaning). In this sense, the entropy is a fundamental limit representing the "amount of information" in a source. At most, we can encode a message up to its entropy.
+
 ## Conclusion
+
+I hope that this post shed some light regarding entropy, and its appearance in many fields. The key takeaway from this is that entropy is a very natural consequence that comes out of reasoning about how "likely" a set of probability distributions are. Given how general its derivation is, it shouldn't be so surprising that entropy pops up all over the place. Given its interpretation as the "likelihood of a distribution", it also intuitively makes sense why we often maximize it in various inference problems.
 
 ## References
 
