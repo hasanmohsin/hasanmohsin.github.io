@@ -40,7 +40,7 @@ To calculate $W(\mathbf{p})$, we can do some combinatorics. We are interested in
 $$\begin{align} W(\mathbf{p}) &= \frac{N!}{n_1! n_2!...n_m!}
 \end{align}$$
 
-Now that we have a complete description of the probability, we can ask for the **most likely** assignment $\mathbf{p^{\*}} = \mathrm{argmax} P(\mathbf{p})$. We will pick this $\mathbf{p^{\*}}$ as the outcome probabilities.
+Now that we have a complete description of the probability, we can ask for the **most likely** assignment $\mathbf{p^{\*}} = \mathrm{argmax} \; P(\mathbf{p})$. We will pick this $\mathbf{p^{\*}}$ as the outcome probabilities.
 
 We can see that this involves maximizing $W(\mathbf{p})$. Since $\log$ is a monotonically increasing function, we can instead maximize the quantity $\log W$.
 
