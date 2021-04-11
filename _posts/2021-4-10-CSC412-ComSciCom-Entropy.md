@@ -30,23 +30,23 @@ Now keep in mind the crux of the problem: we can't actually run these experiment
 
 What does this mean for the probability assignments? It is possible for many sequences to give us the same "outcome counts" $\\{ n_1, n_2, ... n_m\\}$, and therefore the same assignment of probabilities. Let's denote an assignment of probabilities by the vector $\mathbf{p} = (p(x_1), p(x_2), ... p(x_m)) = (n_1/N, n_2/N, ... n_m/N)$. What we are interested in is the **probability** distribution over the possible assignments $\mathbf{p}$, which we'll denote $P(\mathbf{p})$. The principle of indifference tells us that each sequence is equally probable. This means that an assignment $p$ is more probable if there are more distinct sequences which give rise to the same assignment, or equivalently, the same set of outcome counts $\\{n_1, n_2,... n_m\\}$. In other words, if we denote by $W(\mathbf{p})$ the number of distinct sequences which have the specified probability assignments $p$, we have:
 
-$$\begin{flalign} 
+$$\begin{align} 
 P(\mathbf{p}) &\propto W(\mathbf{p}) \\
 &= \frac{W(\mathbf{p})}{Z}
-\end{flalign}$$
+\end{align}$$
 
 To calculate $W(\mathbf{p})$, we can do some combinatorics. We are interested in the number of ways we can choose $n_1$ objects of one type, $n_2$ of another type, ..., and $n_m$ of a last type, out of a total group of $N$ items. Consider a certain specific sequence which has the prescribed outcome counts. There are $N!$ possible permutations of this sequence. If $x_1$ occurs $n_1$ times, then there are $n_1!$ possible ways we can shuffle it around while giving the same sequence. Shuffling around within each outcome gives the same sequence, so the $N!$ overcounts by a factor of $n_1! n_2! n_3! ... n_m!$. Correcting for this gives us $W(\mathbf{p})$: 
 
-$$\begin{flalign} W(\mathbf{p}) &= \frac{N!}{n_1! n_2!...n_m!}
-\end{flalign}$$
+$$\begin{align} W(\mathbf{p}) &= \frac{N!}{n_1! n_2!...n_m!}
+\end{align}$$
 
 Now that we have a complete description of the probability, we can ask for the **most likely** assignment $\mathbf{p^{\*}} = \mathrm{argmax} P(\mathbf{p})$. We will pick this $\mathbf{p^{\*}}$ as the outcome probabilities.
 
 We can see that this involves maximizing $W(\mathbf{p})$. Since $\log$ is a monotonically increasing function, we can instead maximize the quantity $\log W$.
 
-$$\begin{flalign}
+$$\begin{align}
 \mathbf{log}
-\end{flalign}$$
+\end{align}$$
 
 
 
