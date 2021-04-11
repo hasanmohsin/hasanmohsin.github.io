@@ -28,13 +28,13 @@ Let's apply the principle in a different, slightly more general way. Say we ran 
 
 Now keep in mind the crux of the problem: we can't actually run these experiments, and we'll need to reason about these sequences in a different way. In fact, we'll appeal to the principle of indifference **on these sequences**. Since we don't have any other information, we'll say that all sequences are as likely to occur as each other. 
 
-What does this mean for the probability assignments? It is possible for many sequences to give us the same "outcome counts" $\{ n_1, n_2, ... n_m\}$, and therefore the same assignment of probabilities. To calculate the number of sequences which give rise to some set of outcome counts $\{ n_1, n_2,... n_m\}, we can do some combinatorics. There are $N!$ possible sequences we can observe. If $x_1$ occurs $n_1$ times, then there are $n_1!$ possible ways we can shuffle it around while giving the same count. Thus, for a set of outcome counts, we have $n_1! n_2! n_3! ... n_m!$ possible ways of shuffling the sequence while maintaining the counts. Thus:
+What does this mean for the probability assignments? It is possible for many sequences to give us the same "outcome counts" $\{ n_1, n_2, ... n_m\}$, and therefore the same assignment of probabilities. To calculate the number of sequences which give rise to some set of outcome counts $\{ n_1, n_2,... n_m\}$, we can do some combinatorics. There are $N!$ possible sequences we can observe. If $x_1$ occurs $n_1$ times, then there are $n_1!$ possible ways we can shuffle it around while giving the same count. Thus, for a set of outcome counts, we have $n_1! n_2! n_3! ... n_m!$ possible ways of shuffling the sequence while maintaining the counts. Thus:
 
 $$\begin{equation}
 W = \frac{N!}{n_1!n_2!...n_m!}
 \end{equation}$$
 
-Now we maximize $\logW$:
+Now we maximize $\log W$:
 
 
 
