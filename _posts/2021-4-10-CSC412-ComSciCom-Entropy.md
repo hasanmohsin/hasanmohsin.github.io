@@ -81,7 +81,23 @@ But in this case what was the point of doing this long calculation? Both methods
 
 For instance, suppose that in the above problem, we were given one extra piece of information: the mean outcome $\mathbb{E}[x] = \bar{x}$. This means that the probability assignments $\mathbf{p}$ must satisfy $\sum_{i=1}^{m} x_i p(x_i) = \bar{x}$. Now we must pick the probability assignment $\mathbf{p}$, under this constraint, which is most likely.
 
-There isn't a straightforward way of doing this if we were using the regular principle of indifference, but using the entropy, it is easy. We add in the constraint 
+There isn't a straightforward way of doing this if we were using the regular principle of indifference, but using the entropy, it is easy. We add in the constraint as lagrange multiplier and optimize the objective:
+
+$$\begin{align}
+
+\end{align}$$
+
+We can again solve this problem by setting the gradient to 0. We get the Gibbs distribution.
+
+## Its use in ML
+
+## Why does it show up in Information theory
+
+## Why does it show up in Physics
+
+## Conclusion
+
+## References
 
 #First edit.
 #Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
