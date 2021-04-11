@@ -7,12 +7,36 @@ This post is going to try to answer the question: "What exactly is entropy"?
 Mathematically, the question is answered easily enough. Suppose we have some probability distribution $p(x)$ over a state space with $m$ outcomes $\{x_1, x_2, ... x_m\}$. In this post we will stick with a discrete state space, since the intuition is more clear and there are some complications with continuous ones. The entropy $$H$$ is defined for such a distribution as:
 
 $$\begin{equation}
-H[p] = - \sum_i p(x_i) \log p(x_i)
+H[p] = - \sum^m_{i=1} p(x_i) \log p(x_i)
 \end{equation}$$
 
 Ok, but what actually *is* the Entropy? How can we understand it? It is the cornerstone of Information theory, underlies the 2nd law of thermodynamics, and appears all over the place in Machine Learning, so the task seems worthwhile. 
 
-Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations do offer some 
+Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations are fair, they are a little imprecise. For instance, why do we need entropy to describe "uncertainty" in the random outcome when something like the variance can describe this perfectly well? It seems like we could come up with many *ad-hoc* formulas for something like uncertainty, and these arguments don't really convince me of why entropy is special. Instead, I will present what I think is the most intuitively satisfying picture of entropy: the so-called "Wallis" interpretation. I will first discuss derive the formula for entropy according to this interpretation, and then reason through its appearance and utility in different areas of math and science. 
+
+## Coming up with Entropy 
+
+Suppose you have some setup for performing random experiments, and each time you run an experiment you get something out of a set of $m$ outcomes $\{ x_1, ..., x_m \}$. This can correspond to a coin toss with $m=2$, a roll of a single die with $m=6$ or many other scenarios. We will stick with the general setup. Now consider the following problem: how do you go about assigning probabilities, $p(x_i)$ to each outcome, **if you can't actually run the experiments**, and if you know nothing else about the system? 
+
+### The Principle of Indifference
+
+An intuitive solution to the problem is that if we don't know anything at all about our experimental outcome, then we have no reason to assume one outcome, $x_i$ is any more or less likely than any other, $x_j$. Thus, the most reasonable thing to do is to be *indifferent* to what each outcome actually is, and assign an equal probability to everything. This rule, intuitively understood as far back as the 1600s, is called the "principle of indifference".
+
+### Generalizing the Principle
+
+Let's apply the principle in a different, slightly more general way. Say we ran the experiment $N$ times. We'd get some sequence of $N$ outcomes like $(x_{m-2}, x_1, x_1, x_3, x_m,...)$, where some outcomes will repeat. Given such a sequence, we can count the number of times outcome $x_i$ occurs, and call it $n_i$. Now, if we ran the experiment $N$ times, and we saw outcome $x_i$ occur $n_i$ times, then we can estimate the probability $p(x_i) \approx \frac{n_i}{N}$, We would expect that the larger $N$ is, the closer we'll get to the true probability. If we had observed some other sequence of $N$ outomces, our probability estimates will be slightly different. In this way, the observed sequence induces an assignment of probabilities.
+
+Now keep in mind the crux of the problem: we can't actually run these experiments, and we'll need to reason about these sequences in a different way. In fact, we'll appeal to the principle of indifference **on these sequences**. Since we don't have any other information, we'll say that all sequences are as likely to occur as each other. 
+
+What does this mean for the probability assignments? It is possible for many sequences to give us the same "outcome counts" $\{ n_1, n_2, ... n_m\}$, and therefore the same assignment of probabilities. To calculate the number of sequences which give rise to some set of outcome counts $\{ n_1, n_2,... n_m\}, we can do some combinatorics. There are $N!$ possible sequences we can observe. If $x_1$ occurs $n_1$ times, then there are $n_1!$ possible ways we can shuffle it around while giving the same count. Thus, for a set of outcome counts, we have $n_1! n_2! n_3! ... n_m!$ possible ways of shuffling the sequence while maintaining the counts. Thus:
+
+$$\begin{equation}
+W = \frac{N!}{n_1!n_2!...n_m!}
+\end{equation}$$
+
+Now we maximize $\logW$:
+
+
 
 #First edit.
 #Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
