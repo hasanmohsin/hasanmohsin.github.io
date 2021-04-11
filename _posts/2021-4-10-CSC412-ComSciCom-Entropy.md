@@ -10,7 +10,7 @@ $$\begin{equation}
 H[p] = - \sum^m_{i=1} p(x_i) \log p(x_i)
 \end{equation}$$
 
-Ok, but what actually *is* the Entropy? How can we understand it? It is the cornerstone of Information theory, underlies the 2nd law of thermodynamics, and appears all over the place in Machine Learning, so the task seems worthwhile. 
+Ok, but what actually *is* the entropy? How can we understand it? It is the cornerstone of Information theory, underlies the 2nd law of thermodynamics, and appears all over the place in Machine Learning, so the task seems worthwhile. 
 
 Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations are fair, they are a little imprecise. For instance, why do we need entropy to describe "uncertainty" in the random outcome when something like the variance can describe this perfectly well? It seems like we could come up with many *ad-hoc* formulas for something like uncertainty, and these arguments don't really convince me of why entropy is special. Instead, I will present what I think is the most intuitively satisfying picture of entropy: the so-called "Wallis" interpretation. I will first discuss derive the formula for entropy according to this interpretation, and then reason through its appearance and utility in different areas of math and science. 
 
@@ -28,13 +28,25 @@ Let's apply the principle in a different, slightly more general way. Say we ran 
 
 Now keep in mind the crux of the problem: we can't actually run these experiments, and we'll need to reason about these sequences in a different way. In fact, we'll appeal to the principle of indifference **on these sequences**. Since we don't have any other information, we'll say that all sequences are as likely to occur as each other. 
 
-What does this mean for the probability assignments? It is possible for many sequences to give us the same "outcome counts" $\{ n_1, n_2, ... n_m\}$, and therefore the same assignment of probabilities. To calculate the number of sequences which give rise to some set of outcome counts $\{ n_1, n_2,... n_m\}$, we can do some combinatorics. There are $N!$ possible sequences we can observe. If $x_1$ occurs $n_1$ times, then there are $n_1!$ possible ways we can shuffle it around while giving the same count. Thus, for a set of outcome counts, we have $n_1! n_2! n_3! ... n_m!$ possible ways of shuffling the sequence while maintaining the counts. Thus:
+What does this mean for the probability assignments? It is possible for many sequences to give us the same "outcome counts" $\{ n_1, n_2, ... n_m\}$, and therefore the same assignment of probabilities. Let's denote an assignment of probabilities by the vector $\mathbf{p} = (p(x_1), p(x_2), ... p(x_m)) = (n_1/N, n_2/N, ... n_m/N)$. What we are interested in is the **probability** distribution over the possible assignments $\mathbf{p}$, which we'll denote $P(\mathbf{p})$. The principle of indifference tells us that each sequence is equally probable. This means that an assignment $p$ is more probable if there are more distinct sequences which give rise to the same assignment, or equivalently, the same set of outcome counts $`{` n_1, n_2,... n_m `}`$. In other words, if we denote by $W(\mathbf{p})$ the number of distinct sequences which have the specified probability assignments $p$, we have:
 
-$$\begin{equation}
-W = \frac{N!}{n_1!n_2!...n_m!}
-\end{equation}$$
+$$\begin{flalign*} 
+P(\mathbf{p}) &\propto W(\mathbf{p}) \\
+&= \frac{W(\mathbf{p})}{Z}
+\end{flalign*}$$
 
-Now we maximize $\log W$:
+To calculate $W(\mathbf{p})$, we can do some combinatorics. We are interested in the number of ways we can choose $n_1$ objects of one type, $n_2$ of another type, ..., and $n_m$ of a last type, out of a total group of $N$ items. Consider a certain specific sequence which has the prescribed outcome counts. There are $N!$ possible permutations of this sequence. If $x_1$ occurs $n_1$ times, then there are $n_1!$ possible ways we can shuffle it around while giving the same sequence. Shuffling around within each outcome gives the same sequence, so the $N!$ overcounts by a factor of $n_1! n_2! n_3! ... n_m!$. Correcting for this gives us $W(\mathbf{p})$: 
+
+$$\begin{flalign*} W(\mathbf{p}) &= \frac{N!}{n_1! n_2!...n_m!}
+\end{flalign*}$$
+
+Now that we have a complete description of the probability, we can ask for the **most likely** assignment $\mathbf{p^*} = \mathrm{argmax} P(\mathbf{p})$. We will pick this $\mathbf{p^*}$ as the outcome probabilities.
+
+We can see that this involves maximizing $W(\mathbf{p})$. Since $\log$ is a monotonically increasing function, we can instead maximize the quantity $\log W$.
+
+$$\begin{flalign}
+\mathbf{log}
+\end{flalign}$$
 
 
 
