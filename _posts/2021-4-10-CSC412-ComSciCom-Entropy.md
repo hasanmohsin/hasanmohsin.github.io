@@ -14,6 +14,8 @@ Ok, but what actually *is* the entropy? How can we understand it? It is the corn
 
 Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations are fair, they are a little imprecise. For instance, why do we need entropy to describe "uncertainty" in the random outcome when something like the variance can describe this perfectly well? It seems like we could come up with many *ad-hoc* formulas for something like uncertainty, and these arguments don't really convince me of why entropy is special. Instead, I will present what I think is the most intuitively satisfying picture of entropy: the so-called "Wallis" derivation. I will first discuss derive the formula for entropy, and then reason through its appearance and utility in different areas of math and science. 
 
+Unless otherwise noted, in the discussion below, I will take $\log$ to denote the logarithm with base $e$.
+
 ## Coming up with Entropy 
 
 Suppose you have some setup for performing random experiments, and each time you run an experiment you get something out of a set of $m$ outcomes $\\{ x_1, ..., x_m \\}$. This can correspond to a coin toss with $m=2$, a roll of a single die with $m=6$ or many other scenarios. We will stick with the general setup. Now consider the following problem: how do you go about assigning probabilities, $p(x_i)$ to each outcome, **if you can't actually run the experiments**, and if you know nothing else about the system? 
@@ -65,6 +67,11 @@ $$\begin{align}
 This derivation leads us to the entropy: $H[\mathbf{p}] = \frac{1}{N} \log (W(\mathbf{p}))$. The entropy of a distribution is a quantity which reflects how likely that distribution is, under the principle of indifference.
 
 We determine our probability $\mathbf{p}^{\*}$ by maximizing the entropy (since it is equivalent to maximizing $\log W(\mathbf{p})$, under the constraint that $\mathbf{p}$ be normalized, ie. $\sum_{i=1}^m p(x_i) = 1$. We can do this by simply setting the gradient $\nabla_\mathbf{p} H = 0$, since the function $H$ is convex. Each $p(x_k)$ is then determined as:
+
+$$begin{align}
+\frac{\partial}{\partial p(x_k)} H &= 0 \\
+-\frac{\partial}{\partial p(x_i)} \sum{i=1}^{m} p(x_i) \log p(x_i) &= 0 
+\end{align}$$
 
 $$begin{align}
 \frac{\partial}{\partial p(x_k)} H &= 0 \\
