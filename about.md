@@ -4,12 +4,8 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+I'm a 4th year undergrad student at the University of Toronto. I am particularly interested in problems arising in ML with some geometric, or dynamics content.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[mohsin.hasan@mail.utoronto.ca](mailto:mohsin.hasan@mail.utoronto.ca)
