@@ -27,7 +27,7 @@ An intuitive solution to the problem is that if we don't know anything at all ab
 
 ### Generalizing the Principle
 
-Let's apply the principle in a different, slightly more general way. Say we ran the experiment $N$ times, where $N$ is large. We'd get some sequence of $N$ outcomes like $(x_{m-2}, x_1, x_1, x_3, x_m,...)$, where some outcomes will repeat. Given such a sequence, we can count the number of times outcome $x_i$ occurs, and call it $n_i$. Now, if we ran the experiment $N$ times, and we saw outcome $x_i$ occur $n_i$ times, then we can estimate the probability $p(x_i) \approx \frac{n_i}{N}$, We would expect that the larger $N$ is, the closer we'll get to the true probability. If we had observed some other sequence of $N$ outcomes, our probability estimates will be slightly different. In this way, the observed sequence induces an assignment of probabilities. 
+Let's apply the principle in a different, slightly more general way. Say we ran the experiment $N$ times, where $N$ is large. We'd get some sequence of $N$ outcomes like $(x_{m-2}, x_1, x_1, x_3, x_m,...)$, where some outcomes will repeat. Given such a sequence, we can count the number of times outcome $x_i$ occurs, and call it $n_i$. Now, if we ran the experiment $N$ times, and we saw outcome $x_i$ occur $n_i$ times, then we can estimate the probability $p(x_i) \approx \frac{n_i}{N}$. We would expect that the larger $N$ is, the closer we'll get to the true probability. If we had observed some other sequence of $N$ outcomes, our probability estimates will be slightly different. In this way, the observed sequence induces an assignment of probabilities. 
 
 The figure below gives an example of this paradigm, in the case where our experiment consists of rolling a 6-sided die. Here, we have $m=6$ (6 outcomes) and we perform $N=10$ runs of the experiment.
 
@@ -55,7 +55,7 @@ To calculate $W(\mathbf{p})$, we can do some combinatorics. We are interested in
 $$\begin{align} W(\mathbf{p}) &= \frac{N!}{n_1! n_2!...n_m!}
 \end{align}$$
 
-Now that we have a complete description of the probability, we can ask for the **most likely** assignment $\mathbf{p^{\*}} = \mathrm{argmax} \; P(\mathbf{p})$. We will pick this $\mathbf{p^{\*}}$ as the outcome probabilities.
+Now that we have a complete description of the probability, we can ask for the **most likely** assignment $\mathbf{p^{\*}} = \mathrm{argmax} \; P(\mathbf{p})$. We will pick this $\mathbf{p^{\*}}$ as our guess for the most "reasonable" distribution.
 
 We can see that this involves maximizing $W(\mathbf{p})$. Since $\log$ is a monotonically increasing function, we can instead maximize the quantity $\log W(\mathbf{p})$.
 
@@ -99,6 +99,8 @@ For instance, suppose that in the above problem, we were given one extra piece o
 There isn't a straightforward way of doing this if we were using the regular principle of indifference, but using the entropy, it is easy. We add in the constraint as a Lagrange multiplier and maximize the objective $H[\mathbf{p}] - \lambda (\bar{x} - \sum_{i=1}^{m} x_i p(x_i))$. Note that we had no need of adding a similar multiplier for the normalization constraint, since it is much simpler, though in principle we could have. 
 
 We can again solve this problem by setting the gradient to 0 with respect to $\mathbf{p}$ and $\lambda$. We get as our solution the distribution: $p(x_i) = \exp(-\lambda x_i)/Z$. This is the maximum entropy (and therefore the *most likely*) distribution with the given mean $\bar{x}$.
+
+You might have noticed, but there is a pattern going on here. If we constraint both the mean and the variance (or 2nd moment), then the maximum entropy distribution will be the Gaussian (we'd get a quadratic in the exponent)! This is just yet another special property for our favourite distribution.
 
 ## Why does it show up in Physics
 
@@ -144,6 +146,7 @@ If you are interested in this topic, I recommend checking out the links below (i
 1. ["Principle of Maximum Entropy" Wikipedia Page](https://en.wikipedia.org/wiki/Principle_of_maximum_entropy) - the idea of maximizing entropy as giving us a reasonable probability distribution under uncertainty can be expanded to a general principle for inference (either used alongside, or replacing Bayesian inference).
 2. ["Jaynes' MaxEnt Paper"](https://bayes.wustl.edu/etj/articles/rational.pdf) - Jaynes was a big proponent of the Principle of Maximum Entropy, and this paper discusses its use as a framework for inference. 
 3. ["Leonard Susskind's Lectures on Statistical Mechanics"](https://www.youtube.com/watch?v=D1RzvXDXyqA) - if you are interested in how probabilistic concepts show up in physics, I recommend these legendary lectures by Prof. Susskind. He starts out with basic notions of probability as a starting point for deriving the laws of thermodynamics.
+4. ["Central Limit Theorem and Maximum Entropy"](https://mathoverflow.net/questions/182752/central-limit-theorem-via-maximal-entropy) - I mentioned that the Gaussian is the maximum entropy distribution for a given mean and variance. It is also the distribution sums of i.i.d variables converge to in the Central Limit Theorem. Indeed there are some nice ways of explaining this using the idea that adding a random variable "increases" the entropy, until we converge. See the linked MathOverflow post for a discussion.
 
 ## References <a name="References"></a>
 
