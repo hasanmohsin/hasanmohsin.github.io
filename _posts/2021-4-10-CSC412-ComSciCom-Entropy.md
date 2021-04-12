@@ -10,9 +10,11 @@ $$\begin{equation}
 H[p] = - \sum^m_{i=1} p(x_i) \log p(x_i)
 \end{equation}$$
 
-Ok, but what actually *is* the entropy? How can we understand it? It is the cornerstone of Information theory, underlies the 2nd law of thermodynamics, and appears all over the place in Machine Learning, so the task seems worthwhile. 
+Ok, but what actually *is* the entropy? How can we understand it? It is the cornerstone of Information theory, is a fundamental quantity in statistical physics, and appears all over the place in Machine Learning, so the task seems worthwhile. 
 
-Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations are fair, they are a little imprecise. For instance, why do we need entropy to describe "uncertainty" in the random outcome when something like the variance can describe this perfectly well? It seems like we could come up with many *ad-hoc* formulas for something like uncertainty, and these arguments don't really convince me of why entropy is special. Instead, I will present what I think is the most intuitively satisfying picture of entropy: the so-called "Wallis" interpretation. I will first discuss derive the formula for entropy according to this interpretation, and then reason through its appearance and utility in different areas of math and science. 
+Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations are fair, they are a little imprecise. For instance, why do we need entropy to describe "uncertainty" in the random outcome when something like the variance can describe this perfectly well? It seems like we could come up with many *ad-hoc* formulas for something like uncertainty, and these arguments don't really convince me of why entropy is special. Instead, I will present what I think is the most intuitively satisfying picture of entropy: the so-called "Wallis" derivation. I will first discuss derive the formula for entropy, and then reason through its appearance and utility in different areas of math and science. 
+
+Unless otherwise noted, in the discussion below, I will take $\log$ to denote the logarithm with base $e$.
 
 ## Coming up with Entropy 
 
@@ -34,6 +36,7 @@ $$\begin{align}
 P(\mathbf{p}) &\propto W(\mathbf{p}) \\
 &= \frac{W(\mathbf{p})}{Z}
 \end{align}$$
+
 Where $Z$ is some normalizing factor.
 
 To calculate $W(\mathbf{p})$, we can do some combinatorics. We are interested in the number of ways we can choose $n_1$ objects of one type, $n_2$ of another type, ..., and $n_m$ of a last type, out of a total group of $N$ items. Consider a certain specific sequence which has the prescribed outcome counts. There are $N!$ possible permutations of this sequence. If $x_1$ occurs $n_1$ times, then there are $n_1!$ possible ways we can shuffle it around while giving the same sequence. Shuffling around within each outcome gives the same sequence, so the $N!$ overcounts by a factor of $n_1! n_2! n_3! ... n_m!$. Correcting for this gives us $W(\mathbf{p})$: 
@@ -57,7 +60,7 @@ $$\begin{align}
 &= \sum_{i=1}^{m} (n_i\log N - n_i) - \sum_{i=1}^{m} (n_i \log n_i - n_i) \\
 &= \sum_{i=1}^{m} (n_i \log N - n_i \log n_i) \\
 &= -N\sum_{i=1}^{m} \frac{n_i}{N} \log (\frac{n_i}{N}) \\
-&= -N \sum{i=1}^{m} p(x_i) \log p(x_i) \\
+&= -N \sum_{i=1}^{m} p(x_i) \log p(x_i) \\
 &= N H[ \mathbf{p} ]
 \end{align}$$
 
@@ -67,11 +70,16 @@ We determine our probability $\mathbf{p}^{\*}$ by maximizing the entropy (since 
 
 $$begin{align}
 \frac{\partial}{\partial p(x_k)} H &= 0 \\
--\frac{\partial}{\partial p(x_i)} \sum{i=1}^{m} p(x_i) \log p(x_i) &= 0 \\
--\frac{\partial}{\partial p(x_k)} \sum{i=1}^{m} p(x_i) \log p(x_i) &= 0\\
+-\frac{\partial}{\partial p(x_i)} \sum_{i=1}^{m} p(x_i) \log p(x_i) &= 0 
+\end{align}$$
+
+$$begin{align}
+\frac{\partial}{\partial p(x_k)} H &= 0 \\
+-\frac{\partial}{\partial p(x_i)} \sum_{i=1}^{m} p(x_i) \log p(x_i) &= 0 \\
+-\frac{\partial}{\partial p(x_k)} \sum_{i=1}^{m} p(x_i) \log p(x_i) &= 0\\
 -\log p(x_k) - \frac{p(x_k)}{p(x_k)} &= 0 \\
 p(x_k) &= \exp(-1) \\
-       &= \mathrm{constant}
+p(x_k) &= \mathrm{constant}
 \end{align}$$
 
 We get the same number for each $p(x_i)$. Next we must enforce the constraint. Since the constraint is simple (and doesn't influence the optimization), we can do it manually. Upon normalization, we get a uniform distribution over the $m$ outcomes, so that $p(x_i) = \frac{1}{m}$. 
@@ -108,9 +116,9 @@ To communicate these messages, we simply label each one with an index $i$, and s
 Thus communicating one message of length $N$ requires $\log_2 W(\mathbf{p})$ bits. The average number of bits we must send per character, $L$, is:
 
 $$\begin{align}
-$L$ &= \frac{1}{N} \log_2 W(\mathbf{p}) \\
-&= \frac{1}{log 2} \frac{1}{N}  \log W(\mathbf{p}) \\
-&= \frac{1}{log 2} H[\mathbf{p}] \\
+L &= \frac{1}{N} \log_2 W(\mathbf{p}) \\
+&= \frac{1}{\log 2} \frac{1}{N}  \log W(\mathbf{p}) \\
+&= \frac{1}{\log 2} H[\mathbf{p}] \\
 &= H_2 [\mathbf{p}]
 \end{align}$$
 
