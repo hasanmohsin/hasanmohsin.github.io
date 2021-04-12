@@ -86,6 +86,8 @@ We get the same number for each $p(x_i)$. Next we must enforce the constraint. S
 
 This is exactly the same result the regular principle of indifference gives us. This makes sense, we'd have cause for concern if we got any other result! 
 
+![]({{ site.baseurl }}/images/entropy_post_figure_1.png)
+
 But in this case what was the point of doing this long calculation? Both methods allowed us to pick the most "reasonable" probability assignments when we lack information. The difference is that by phrasing the problem as maximizing entropy, we can easily work with constraints.
 
 For instance, suppose that in the above problem, we were given one extra piece of information: the mean outcome $\mathbb{E}[x] = \bar{x}$. This means that the probability assignments $\mathbf{p}$ must satisfy $\sum_{i=1}^{m} x_i p(x_i) = \bar{x}$. Now we must pick the probability assignment $\mathbf{p}$, under this constraint, which is most likely.
