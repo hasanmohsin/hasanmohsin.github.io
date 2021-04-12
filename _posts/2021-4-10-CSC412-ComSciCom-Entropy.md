@@ -67,7 +67,7 @@ $$\begin{align}
 Next, we take $N$ large (and consequently $n_i$ large), and apply Stirling's approximation for the factorial: $\log(n!) \approx n\log(n) - n$.
 
 $$\begin{align}
-\log (W(\mathbf{p})) &\approx N\log N - N - \sum{i=1}^{m} (n_i \log n_i - n_i) \\
+\log (W(\mathbf{p})) &\approx N\log N - N - \sum_{i=1}^{m} (n_i \log n_i - n_i) \\
 &= \sum_{i=1}^{m} (n_i\log N - n_i) - \sum_{i=1}^{m} (n_i \log n_i - n_i) \\
 &= \sum_{i=1}^{m} (n_i \log N - n_i \log n_i) \\
 &= -N\sum_{i=1}^{m} \frac{n_i}{N} \log (\frac{n_i}{N}) \\
