@@ -96,7 +96,7 @@ So what was the point of doing this long calculation? Both methods allowed us to
 
 For instance, suppose that in the above problem, we were given one extra piece of information: the mean outcome $\mathbb{E}[x] = \bar{x}$. This means that the probability assignments $\mathbf{p}$ must satisfy $\sum_{i=1}^{m} x_i p(x_i) = \bar{x}$. Now we must pick the probability assignment $\mathbf{p}$, under this constraint, which is most likely.
 
-There isn't a straightforward way of doing this if we were using the regular principle of indifference, but using the entropy, it is easy. We add in the constraint as Lagrange multiplier and maximize the objective $H[\mathbf{p}] + \lambda (\bar{x} - \sum_{i=1}^{m} x_i p(x_i))$. Note that we had no need of adding a similar constraint multiplier for the normalization constraint, since it is much simpler. 
+There isn't a straightforward way of doing this if we were using the regular principle of indifference, but using the entropy, it is easy. We add in the constraint as a Lagrange multiplier and maximize the objective $H[\mathbf{p}] - \lambda (\bar{x} - \sum_{i=1}^{m} x_i p(x_i))$. Note that we had no need of adding a similar multiplier for the normalization constraint, since it is much simpler, though in principle we could have. 
 
 We can again solve this problem by setting the gradient to 0 with respect to $\mathbf{p}$ and $\lambda$. We get as our solution the distribution: $p(x_i) = \exp(-\lambda x_i)/Z$. This is the maximum entropy (and therefore the *most likely*) distribution with the given mean $\bar{x}$.
 
