@@ -99,7 +99,7 @@ There isn't a straightforward way of doing this if we were using the regular pri
 
 We can again solve this problem by setting the gradient to 0 with respect to $\mathbf{p}$ and $\lambda$. We get as our solution the distribution: $p(x_i) = \exp(-\lambda x_i)/Z$. This is the maximum entropy (and therefore the *most likely*) distribution with the given mean $\bar{x}$.
 
-You might have noticed, but there is a pattern going on here. If we constraint both the mean and the variance (or 2nd moment), then the maximum entropy distribution will be the Gaussian (we'd get a quadratic in the exponent)! This is just yet another special property for our favourite distribution.
+You might have noticed, but there is a pattern going on here. If we constrained both the mean and the variance (or 2nd moment), then the maximum entropy distribution will be (a discrete form of) the Gaussian! This is just yet another special property for our favourite distribution.
 
 ## Why does it show up in Physics
 
