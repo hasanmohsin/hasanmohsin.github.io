@@ -105,9 +105,7 @@ The path that we took to derive the entropy was first discovered in statistical 
 
 Thus, we must come up with the most "reasonable" distribution over the set $\\{E_1, E_2, ... ,E_m\\}$, under the constraint that the average energy be $\bar{E}$. This exactly mirrors the last example we calculated, so that we know the solution must be  $p(x_i) = \exp(-\lambda E_i)/Z$. Indeed, this distribution is named the "Gibbs distribution" (as well as the "softmax distribution). The entropy of this distribution is equal (within a conversion of units) to the thermodynamic entropy, usually denoted $S$.
 
-We obtained this distribution because we thought it was the most likely, but this guess works out empirically. For instance, this, combined with other definitions of physics, such as pressure and volume, lets us derive the ideal gas law, which we know to be true. 
-
-The interpretation of entropy as the number of ways a probability distribution can occur is also fruitful in describing the 2nd law of thermodynamics. The 2nd law is fairly complicated in general, but a special case states that as a system evolves in time, its entropy tends to increase. Using our notion of entropy, we can understand why this must be: the 
+We obtained this distribution because we thought it was the most likely, but this guess works out empirically. For instance, this, combined with other definitions of physics, such as pressure and volume, lets us derive the ideal gas law, which we experimentally know to be true. 
 
 
 ## Why does it show up in Information theory
@@ -138,6 +136,14 @@ Consider our running example of a 6-sided die. The figure below gives us example
 ## Conclusion
 
 I hope that this post shed some light regarding entropy, and its appearance in many fields. The key takeaway from this is that entropy is a very natural consequence that comes out of reasoning about how "likely" a set of probability distributions are. Given how general its derivation is, it shouldn't be so surprising that entropy pops up all over the place. Given its interpretation as the "likelihood of a distribution", it also intuitively makes sense why we often maximize it in various inference problems.
+
+## Further Reading
+
+If you are interested in this topic, I recommend checking out the links below (in addiiton to the references):
+
+1. ["Principle of Maximum Entropy" Wikipedia Page](https://en.wikipedia.org/wiki/Principle_of_maximum_entropy) - the idea of maximizing entropy as giving us a reasonable probability distribution under uncertainty can be expanded to a general principle for inference (either used alongside, or replacing Bayesian inference).
+2. ["Jaynes' MaxEnt Paper"](https://bayes.wustl.edu/etj/articles/rational.pdf) - Jaynes was a big proponent of the Principle of Maximum Entropy, and this paper discusses its use as a framework for inference. 
+3. ["Leonard Susskind's Lectures on Statistical Mechanics"](https://www.youtube.com/watch?v=D1RzvXDXyqA) - if you are interested in how probabilistic concepts show up in physics, I recommend these legendary lectures by Prof. Susskind. He starts out with basic notions of probability as a starting point for deriving the laws of thermodynamics.
 
 ## References <a name="References"></a>
 
