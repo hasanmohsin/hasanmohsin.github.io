@@ -70,13 +70,13 @@ We determine our probability $\mathbf{p}^{\*}$ by maximizing the entropy (since 
 
 $$begin{align}
 \frac{\partial}{\partial p(x_k)} H &= 0 \\
--\frac{\partial}{\partial p(x_i)} \sum{i=1}^{m} p(x_i) \log p(x_i) &= 0 
+-\frac{\partial}{\partial p(x_i)} \sum_{i=1}^{m} p(x_i) \log p(x_i) &= 0 
 \end{align}$$
 
 $$begin{align}
 \frac{\partial}{\partial p(x_k)} H &= 0 \\
--\frac{\partial}{\partial p(x_i)} \sum{i=1}^{m} p(x_i) \log p(x_i) &= 0 \\
--\frac{\partial}{\partial p(x_k)} \sum{i=1}^{m} p(x_i) \log p(x_i) &= 0\\
+-\frac{\partial}{\partial p(x_i)} \sum_{i=1}^{m} p(x_i) \log p(x_i) &= 0 \\
+-\frac{\partial}{\partial p(x_k)} \sum_{i=1}^{m} p(x_i) \log p(x_i) &= 0\\
 -\log p(x_k) - \frac{p(x_k)}{p(x_k)} &= 0 \\
 p(x_k) &= \exp(-1) \\
 p(x_k) &= \mathrm{constant}
@@ -116,7 +116,7 @@ To communicate these messages, we simply label each one with an index $i$, and s
 Thus communicating one message of length $N$ requires $\log_2 W(\mathbf{p})$ bits. The average number of bits we must send per character, $L$, is:
 
 $$\begin{align}
-$L$ &= \frac{1}{N} \log_2 W(\mathbf{p}) \\
+L &= \frac{1}{N} \log_2 W(\mathbf{p}) \\
 &= \frac{1}{\log 2} \frac{1}{N}  \log W(\mathbf{p}) \\
 &= \frac{1}{\log 2} H[\mathbf{p}] \\
 &= H_2 [\mathbf{p}]
