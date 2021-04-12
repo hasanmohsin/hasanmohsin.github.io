@@ -34,6 +34,7 @@ $$\begin{align}
 P(\mathbf{p}) &\propto W(\mathbf{p}) \\
 &= \frac{W(\mathbf{p})}{Z}
 \end{align}$$
+
 Where $Z$ is some normalizing factor.
 
 To calculate $W(\mathbf{p})$, we can do some combinatorics. We are interested in the number of ways we can choose $n_1$ objects of one type, $n_2$ of another type, ..., and $n_m$ of a last type, out of a total group of $N$ items. Consider a certain specific sequence which has the prescribed outcome counts. There are $N!$ possible permutations of this sequence. If $x_1$ occurs $n_1$ times, then there are $n_1!$ possible ways we can shuffle it around while giving the same sequence. Shuffling around within each outcome gives the same sequence, so the $N!$ overcounts by a factor of $n_1! n_2! n_3! ... n_m!$. Correcting for this gives us $W(\mathbf{p})$: 
@@ -71,7 +72,7 @@ $$begin{align}
 -\frac{\partial}{\partial p(x_k)} \sum{i=1}^{m} p(x_i) \log p(x_i) &= 0\\
 -\log p(x_k) - \frac{p(x_k)}{p(x_k)} &= 0 \\
 p(x_k) &= \exp(-1) \\
-       &= \mathrm{constant}
+p(x_k) &= \mathrm{constant}
 \end{align}$$
 
 We get the same number for each $p(x_i)$. Next we must enforce the constraint. Since the constraint is simple (and doesn't influence the optimization), we can do it manually. Upon normalization, we get a uniform distribution over the $m$ outcomes, so that $p(x_i) = \frac{1}{m}$. 
