@@ -10,11 +10,12 @@ $$\begin{equation}
 H[p] = - \sum^m_{i=1} p(x_i) \log p(x_i)
 \end{equation}$$
 
+Where $\log$ is meant to denote the logarithm with base $e$.
+
 Ok, but what actually *is* the entropy? How can we understand it? It is the cornerstone of Information theory, is a fundamental quantity in statistical physics, and appears all over the place in Machine Learning, so the task seems worthwhile. 
 
-Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations are fair, they are a little imprecise. For instance, why do we need entropy to describe "uncertainty" in the random outcome when something like the variance can describe this perfectly well? It seems like we could come up with many *ad-hoc* formulae for something like uncertainty. For this reason, these arguments don't really convince me of why entropy is special. Instead, I will present what I think is the most intuitively satisfying picture of entropy: the so-called "Wallis derivation", presented in \([Jaynes, 2003](#References)\), pages 351-255. I will first discuss derive the formula for entropy, and then reason through its appearance and utility in physics and information theory. 
+Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations are fair, they are a little imprecise. For instance, why do we need entropy to describe "uncertainty" in the random outcome when something like the variance can describe this perfectly well? It seems like we could come up with many *ad-hoc* formulae for something like uncertainty. For this reason, arguments such as these don't really convince me of why entropy is special. Instead, I will present what I think is the most intuitively satisfying picture of entropy: the so-called "Wallis derivation", presented in \([Jaynes, 2003](#References)\), pages 351-255. I will first derive the formula for entropy, and then reason through its appearance and utility in physics and information theory. 
 
-Unless otherwise noted, in the discussion below, I will take $\log$ to denote the logarithm with base $e$.
 
 ## Coming up with Entropy 
 
@@ -101,12 +102,11 @@ We can again solve this problem by setting the gradient to 0 with respect to $\m
 
 ## Why does it show up in Physics
 
-The path that we took to derive the entropy was first discovered in statistical mechanics. The problem of interest there was the following: we have a system of many, small, interacting particles, and we can only measure the mean total energy $\bar{E}$. We are interested in writing down a probability distribution over the possible energies for each particle, $E_i$. Trying to estimate this distribution by observing the state of any particle is basically impossible, since we can't make measurements precisely for such a small object. 
+The path that we took to derive the entropy was first discovered in statistical mechanics. The problem of interest there was the following: we have a system of many, small, interacting particles, and we can only measure the mean total energy $\bar{E}$. We are interested in writing down a probability distribution over the possible energies for each particle, $E_i$. Trying to estimate this distribution by observing the state of any particle is basically impossible, since we can't make measurements precisely for a meaningful number of small objects. 
 
-Thus, we must come up with the most "reasonable" distribution over the set $\\{E_1, E_2, ... ,E_m\\}$, under the constraint that the average energy be $\bar{E}$. This exactly mirrors the last example we calculated, so that we know the solution must be  $p(x_i) = \exp(-\lambda E_i)/Z$. Indeed, this distribution is named the "Gibbs distribution" (as well as the "softmax distribution). The entropy of this distribution is equal (within a conversion of units) to the thermodynamic entropy, usually denoted $S$.
+Thus, we must come up with the most "reasonable" distribution over the set $\\{E_1, E_2, ... ,E_m\\}$, under the constraint that the average energy be $\bar{E}$. This exactly mirrors the last example we calculated, so that we know the solution must be  $p(x_i) = \exp(-\lambda E_i)/Z$. Indeed, this distribution is named the "Gibbs distribution" (as well as the "softmax distribution). The entropy of this distribution is equal (within a conversion of units) to the thermodynamic entropy, usually denoted $S$, and the parameter $\lambda$ is called the inverse temperature, equal to (again within a conversion of units) the reciprocal of the thermodynamic temperature.
 
-We obtained this distribution because we thought it was the most likely, but this guess works out empirically. For instance, this, combined with other definitions of physics, such as pressure and volume, lets us derive the ideal gas law, which we experimentally know to be true. 
-
+We obtained this distribution because we thought it was the most likely, but this guess works out empirically. For instance, this distribution, combined with other definitions of physics, such as pressure and volume, is enough derive the ideal gas law, which we experimentally know to be true. 
 
 ## Why does it show up in Information theory
 
@@ -114,9 +114,9 @@ Information theory is concerned with efficient communication. Suppose we wish to
 
 For this problem, Claude Shannon made the key observation that, as far as efficiency is concerned, communication is related to choosing between a set of possible messages, rather than the content of those messages \([Shannon, 1948]($References)\). If our source generates messages of $N$ characters, then to "communicate a message" means specifying one out of all possible messages. If $N$ is large then every possible message must respect the probability distribution of the source. How many such messages are there? We already made this calculation in a section above: there are $W(\mathbf{p})$ such messages. 
 
-To communicate these messages, we simply label each one with an index $i$, and send the associated the number. We assume that at the other end, the receiver knows which message corresponds to which index. If we represent each index $i$ as a binary number, how many bits will we need to send? Each possible message must get a unique index, so that the index number must cover $W(\mathbf{p})$ possibilities. A binary number requires $\log_2 W(\mathbf{p})$ bits to represent $W(\mathbf{p})$ possibilities. 
+To communicate these messages, we simply label each one with an index $i$, and send the associated number. We assume that at the other end, the receiver knows which message corresponds to which index. If we represent each index $i$ as a binary number, how many bits will we need to send? Each possible message must get a unique index, so that the index number must cover $W(\mathbf{p})$ possibilities. A binary number requires $\log_2 W(\mathbf{p})$ bits to represent $W(\mathbf{p})$ possibilities. 
 
-Thus communicating one message of length $N$ requires $\log_2 W(\mathbf{p})$ bits. The average number of bits we must send per character, $L$, is:
+Thus, communicating one message of length $N$ requires $\log_2 W(\mathbf{p})$ bits. The average number of bits we must send per character, $L$, is:
 
 $$\begin{align}
 L &= \frac{1}{N} \log_2 W(\mathbf{p}) \\
@@ -129,7 +129,7 @@ Where again, we see that the entropy naturally arises. By convention we absorb t
 
 Thus, this encoding scheme lets us send the message in $H_2[\mathbf{p}]$. Can we get away with using less bits? Well, that would require some possible messages to share the same index. This would mean that, for those messages, the receiver wouldn't be able to recover the exact message we meant to send. Therefore, we cannot reduce the number of bits (without introducing some loss of meaning). In this sense, the entropy is a fundamental limit representing the "amount of information" in a source. At most, we can encode a message up to its entropy.
 
-Consider our running example of a 6-sided die. The figure below gives us examples of encoding the messages from uniform $\mathbf{p_1}$ and degenerate $\mathbf{p_2}$ distributions, with $N=6$. We can see that $\mathbf{p_1}$ needs many more bits (10 bits) to distinguish between all its possible messages, while the $\mathbf{p_2}$ needs 1 bit. This is reflected in their corresponding entropies. In fact, as its entropy suggests, we can even get away with $0$ bits for $\mathbf{p_2}$. How? Well, if $\mathbf{p_2}$ only produces 1 possible message, then there is no need to transmit it! If we were forced to transmit something for $\mathbf{p_2}$, it would take 1 bit. 
+Consider our running example of a 6-sided die. We wish to send to a receiver the results of our die rolls: these are our messages. The figure below gives us examples of encoding these messages from a uniform $\mathbf{p_1}$ and a degenerate $\mathbf{p_2}$ distribution, with $N=6$. We can see that $\mathbf{p_1}$ needs many more bits (10 bits) to distinguish between all its possible messages, while the $\mathbf{p_2}$ needs 1 bit. This is reflected in their corresponding entropies. In fact, as its entropy suggests, we can even get away with $0$ bits for $\mathbf{p_2}$. How? Well, if $\mathbf{p_2}$ only produces 1 possible message (the die only ever rolls a $1$), then there is no need to transmit its outcomes at all! If we were forced to transmit something for $\mathbf{p_2}$, it would take 1 bit. 
 
 ![]({{ site.baseurl }}/images/entropy_post_figure_2.png)
 
