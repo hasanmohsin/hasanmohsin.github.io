@@ -60,7 +60,7 @@ $$\begin{align}
 &= \sum_{i=1}^{m} (n_i\log N - n_i) - \sum_{i=1}^{m} (n_i \log n_i - n_i) \\
 &= \sum_{i=1}^{m} (n_i \log N - n_i \log n_i) \\
 &= -N\sum_{i=1}^{m} \frac{n_i}{N} \log (\frac{n_i}{N}) \\
-&= -N \sum{i=1}^{m} p(x_i) \log p(x_i) \\
+&= -N \sum_{i=1}^{m} p(x_i) \log p(x_i) \\
 &= N H[ \mathbf{p} ]
 \end{align}$$
 
