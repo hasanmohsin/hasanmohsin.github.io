@@ -68,12 +68,12 @@ This derivation leads us to the entropy: $H[\mathbf{p}] = \frac{1}{N} \log (W(\m
 
 We determine our probability $\mathbf{p}^{\*}$ by maximizing the entropy (since it is equivalent to maximizing $\log W(\mathbf{p})$, under the constraint that $\mathbf{p}$ be normalized, ie. $\sum_{i=1}^m p(x_i) = 1$. We can do this by simply setting the gradient $\nabla_\mathbf{p} H = 0$, since the function $H$ is convex. Each $p(x_k)$ is then determined as:
 
-$$begin{align}
+$$\begin{align}
 \frac{\partial}{\partial p(x_k)} H &= 0 \\
 -\frac{\partial}{\partial p(x_i)} \sum_{i=1}^{m} p(x_i) \log p(x_i) &= 0 
 \end{align}$$
 
-$$begin{align}
+$$\begin{align}
 \frac{\partial}{\partial p(x_k)} H &= 0 \\
 -\frac{\partial}{\partial p(x_i)} \sum_{i=1}^{m} p(x_i) \log p(x_i) &= 0 \\
 -\frac{\partial}{\partial p(x_k)} \sum_{i=1}^{m} p(x_i) \log p(x_i) &= 0\\
