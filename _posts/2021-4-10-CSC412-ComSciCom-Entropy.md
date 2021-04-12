@@ -82,7 +82,6 @@ We determine our probability $\mathbf{p}^{\*}$ by maximizing the entropy (since 
 $$\begin{align}
 \frac{\partial}{\partial p(x_k)} H &= 0 \\
 -\frac{\partial}{\partial p(x_i)} \sum_{i=1}^{m} p(x_i) \log p(x_i) &= 0 \\
--\frac{\partial}{\partial p(x_k)} \sum_{i=1}^{m} p(x_i) \log p(x_i) &= 0\\
 -\log p(x_k) - \frac{p(x_k)}{p(x_k)} &= 0 \\
 p(x_k) &= \exp(-1) \\
 p(x_k) &= \mathrm{constant}
