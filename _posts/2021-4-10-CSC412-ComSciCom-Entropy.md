@@ -10,9 +10,9 @@ $$\begin{equation}
 H[p] = - \sum^m_{i=1} p(x_i) \log p(x_i)
 \end{equation}$$
 
-Ok, but what actually *is* the entropy? How can we understand it? It is the cornerstone of Information theory, underlies the 2nd law of thermodynamics, and appears all over the place in Machine Learning, so the task seems worthwhile. 
+Ok, but what actually *is* the entropy? How can we understand it? It is the cornerstone of Information theory, is a fundamental quantity in statistical physics, and appears all over the place in Machine Learning, so the task seems worthwhile. 
 
-Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations are fair, they are a little imprecise. For instance, why do we need entropy to describe "uncertainty" in the random outcome when something like the variance can describe this perfectly well? It seems like we could come up with many *ad-hoc* formulas for something like uncertainty, and these arguments don't really convince me of why entropy is special. Instead, I will present what I think is the most intuitively satisfying picture of entropy: the so-called "Wallis" interpretation. I will first discuss derive the formula for entropy according to this interpretation, and then reason through its appearance and utility in different areas of math and science. 
+Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations are fair, they are a little imprecise. For instance, why do we need entropy to describe "uncertainty" in the random outcome when something like the variance can describe this perfectly well? It seems like we could come up with many *ad-hoc* formulas for something like uncertainty, and these arguments don't really convince me of why entropy is special. Instead, I will present what I think is the most intuitively satisfying picture of entropy: the so-called "Wallis" derivation. I will first discuss derive the formula for entropy, and then reason through its appearance and utility in different areas of math and science. 
 
 ## Coming up with Entropy 
 
@@ -110,8 +110,8 @@ Thus communicating one message of length $N$ requires $\log_2 W(\mathbf{p})$ bit
 
 $$\begin{align}
 $L$ &= \frac{1}{N} \log_2 W(\mathbf{p}) \\
-&= \frac{1}{log 2} \frac{1}{N}  \log W(\mathbf{p}) \\
-&= \frac{1}{log 2} H[\mathbf{p}] \\
+&= \frac{1}{\log 2} \frac{1}{N}  \log W(\mathbf{p}) \\
+&= \frac{1}{\log 2} H[\mathbf{p}] \\
 &= H_2 [\mathbf{p}]
 \end{align}$$
 
