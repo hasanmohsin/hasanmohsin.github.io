@@ -12,7 +12,7 @@ H[p] = - \sum^m_{i=1} p(x_i) \log p(x_i)
 
 Ok, but what actually *is* the entropy? How can we understand it? It is the cornerstone of Information theory, is a fundamental quantity in statistical physics, and appears all over the place in Machine Learning, so the task seems worthwhile. 
 
-Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations are fair, they are a little imprecise. For instance, why do we need entropy to describe "uncertainty" in the random outcome when something like the variance can describe this perfectly well? It seems like we could come up with many *ad-hoc* formulae for something like uncertainty. For this reason, these arguments don't really convince me of why entropy is special. Instead, I will present what I think is the most intuitively satisfying picture of entropy: the so-called "Wallis derivation", presented in \\([Jaynes, 2003](#References)\\), pages 351-255. I will first discuss derive the formula for entropy, and then reason through its appearance and utility in physics and information theory. 
+Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations are fair, they are a little imprecise. For instance, why do we need entropy to describe "uncertainty" in the random outcome when something like the variance can describe this perfectly well? It seems like we could come up with many *ad-hoc* formulae for something like uncertainty. For this reason, these arguments don't really convince me of why entropy is special. Instead, I will present what I think is the most intuitively satisfying picture of entropy: the so-called "Wallis derivation", presented in \([Jaynes, 2003](#References)\), pages 351-255. I will first discuss derive the formula for entropy, and then reason through its appearance and utility in physics and information theory. 
 
 Unless otherwise noted, in the discussion below, I will take $\log$ to denote the logarithm with base $e$.
 
@@ -22,7 +22,7 @@ Suppose you have some setup for performing random experiments, and each time you
 
 ### The Principle of Indifference
 
-An intuitive solution to the problem is that if we don't know anything at all about our experimental outcome, then we have no reason to assume one outcome, $x_i$ is any more or less likely than any other, $x_j$. Thus, the most reasonable thing to do is to be *indifferent* to what each outcome actually is, and assign an equal probability to everything. This rule, intuitively understood as far back as the 1600s, is called the "principle of indifference" \\([Keynes, 1921](#References)\\).
+An intuitive solution to the problem is that if we don't know anything at all about our experimental outcome, then we have no reason to assume one outcome, $x_i$ is any more or less likely than any other, $x_j$. Thus, the most reasonable thing to do is to be *indifferent* to what each outcome actually is, and assign an equal probability to everything. This rule, intuitively understood as far back as the 1600s, is called the "principle of indifference" \([Keynes, 1921](#References)\).
 
 ### Generalizing the Principle
 
@@ -114,7 +114,7 @@ The interpretation of entropy as the number of ways a probability distribution c
 
 Information theory is concerned with efficient communication. Suppose we wish to send a message, which we'll model as the output of some random source. The source outputs some character from the alphabet $\\{ x_1, x_2,.. x_m \\}$ at random, with probability $p(x_i)$. 
 
-For this problem, Claude Shannon made the key observation that, as far as efficiency is concerned, communication is related to choosing between a set of possible messages, rather than the content of those messages \\( [Shannon, 1948]($References)\\). If our source generates messages of $N$ characters, then to "communicate a message" means specifying one out of all possible messages. If $N$ is large then every possible message must respect the probability distribution of the source. How many such messages are there? We already made this calculation in a section above: there are $W(\mathbf{p})$ such messages. 
+For this problem, Claude Shannon made the key observation that, as far as efficiency is concerned, communication is related to choosing between a set of possible messages, rather than the content of those messages \([Shannon, 1948]($References)\). If our source generates messages of $N$ characters, then to "communicate a message" means specifying one out of all possible messages. If $N$ is large then every possible message must respect the probability distribution of the source. How many such messages are there? We already made this calculation in a section above: there are $W(\mathbf{p})$ such messages. 
 
 To communicate these messages, we simply label each one with an index $i$, and send the associated the number. We assume that at the other end, the receiver knows which message corresponds to which index. If we represent each index $i$ as a binary number, how many bits will we need to send? Each possible message must get a unique index, so that the index number must cover $W(\mathbf{p})$ possibilities. A binary number requires $\log_2 W(\mathbf{p})$ bits to represent $W(\mathbf{p})$ possibilities. 
 
@@ -139,7 +139,7 @@ Consider our running example of a 6-sided die. The figure below gives us example
 
 I hope that this post shed some light regarding entropy, and its appearance in many fields. The key takeaway from this is that entropy is a very natural consequence that comes out of reasoning about how "likely" a set of probability distributions are. Given how general its derivation is, it shouldn't be so surprising that entropy pops up all over the place. Given its interpretation as the "likelihood of a distribution", it also intuitively makes sense why we often maximize it in various inference problems.
 
-## References
+## References <a name="References"></a>
 
 Jaynes, Edwin T. 2003. Probability Theory: The Logic of Science. Cambridge university press.
 
