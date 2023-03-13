@@ -4,8 +4,8 @@ title: About
 permalink: /about/
 ---
 
-I'm a 4th year undergrad student at the University of Toronto. I am particularly interested in problems arising in ML with some geometric, or dynamics content.
+I'm a Master's student at the University of Waterloo under the supervision of Pascal Poupart. I am interested in Bayesian inference and generative modeling, particularly approaches to these using sampling methods. 
 
 ### Contact me
 
-[mohsin.hasan@mail.utoronto.ca](mailto:mohsin.hasan@mail.utoronto.ca)
+mohsin[dot]hasan[at]uwaterloo[dot]ca
