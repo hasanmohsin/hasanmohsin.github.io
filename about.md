@@ -4,8 +4,8 @@ title: About
 permalink: /about/
 ---
 
-I'm a Master's student at the University of Waterloo under the supervision of Pascal Poupart. I am interested in Bayesian inference and generative modeling, particularly approaches to these using sampling methods. 
+I'm a PhD student at Mila under the supervision of Yoshua Bengio. I am interested in Bayesian inference and generative modeling, particularly approaches to these using sampling methods.
 
 ### Contact me
 
-mohsin[dot]hasan[at]uwaterloo[dot]ca
+mohsin[dot]hasan[at]mila[dot]quebec
