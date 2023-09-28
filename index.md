@@ -4,7 +4,6 @@ title: About Me
 order: 1
 ---
 
-![]({{ site.baseurl }}/images/my_pic.jpg){: style="float: left"}
 
 I'm an ML researcher interested in Bayesian inference and generative modeling (``distribution"-centered techniques in general), particularly approaches to these using sampling methods.
 
