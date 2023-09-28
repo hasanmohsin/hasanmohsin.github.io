@@ -4,7 +4,7 @@ title: About Me
 order: 1
 ---
 
-![]({{ site.baseurl }}/images/my_pic.png)
+![]({{ site.baseurl }}/images/my_pic.jpg)
 
 I'm an ML researcher interested in Bayesian inference and generative modeling (``distribution"-centered techniques in general), particularly approaches to these using sampling methods.
 I also have a passion for physics (currently: parts of condensed matter physics, QFT and the relations between the two).
