@@ -3,13 +3,13 @@
 #
 
 # Name of your site (displayed in the header)
-name: Mohsin's Blog
+name: Mohsin's Site
 
 # Short bio or description (displayed in the header)
-description: Some ideas about ML, and physics #UofT Undergrad Student
+description: Some ideas about ML, and physics
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar:
+avatar: 
 
 #
 # Flags below are optional
@@ -18,15 +18,15 @@ avatar:
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email: mohsin.hasan@mail.utoronto.ca
+  email: mohsin.hasan@mila.quebec
   facebook:
   flickr:
   github: hasanmohsin/hasanmohsin.github.io
   instagram:
-  linkedin:
+  linkedin: https://www.linkedin.com/in/mohsin-hasan-421891254/
   pinterest:
   rss: # just type anything here for a working RSS icon
-  twitter: 
+  twitter: https://twitter.com/mh_steps
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
