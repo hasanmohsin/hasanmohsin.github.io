@@ -1,7 +1,7 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: About Me
+order: 1
 ---
 
 I'm a PhD student at Mila under the supervision of Yoshua Bengio. I am interested in Bayesian inference and generative modeling, particularly approaches to these using sampling methods.
