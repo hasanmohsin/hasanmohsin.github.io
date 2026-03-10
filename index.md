@@ -3,9 +3,10 @@ layout: default
 title: About Me
 order: 1
 ---
+<img align="right" src="/images/my_pic.jpg" width="250">
 
 
-I'm an ML researcher interested in Bayesian inference and generative modeling ("distribution"-centered techniques in general), particularly approaches to these using sampling methods.
+I'm an ML researcher interested in generative modelling (esp. diffusion/flow models) as well as probabilistic inference, with a particular emphasis on sampling methods. My recent work has focused on applying ideas from probabilistic inference for post-training continuous and discrete diffusion models. 
 
 I also have a passion for physics (currently: parts of condensed matter physics, QFT and the relations between the two).
 
