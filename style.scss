@@ -529,11 +529,13 @@ footer {
 // The GitHub, email and X icons are dark circles with white glyphs, which
 // disappear against a dark footer. Inverting them yields a light circle with
 // a dark glyph. The brand-coloured icons are left alone.
+// Interpolated so Sass emits this verbatim -- bare invert(...) would be parsed
+// as Sass's own invert($color) function, which rejects a var() argument.
 .svg-icon.github,
 .svg-icon.email,
 .svg-icon.twitter,
 .svg-icon.stackoverflow {
-  filter: invert(var(--icon-invert));
+  filter: #{"invert(var(--icon-invert))"};
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
