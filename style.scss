@@ -9,6 +9,50 @@
 @import "variables";
 // Syntax highlighting @import is at the bottom of this file
 
+/**********/
+/* THEMES */
+/**********/
+
+// Dark is the default for every visitor, regardless of their OS setting.
+// Light applies only when someone picks it with the toggle, which sets
+// data-theme="light" on <html> and remembers the choice in localStorage.
+
+:root {
+  --bg:            #16181c;
+  --bg-subtle:     #1c1f24;
+  --text:          #c8ccd4;
+  --text-strong:   #eceef2;
+  --text-muted:    #8b9199;
+  --link:          #6ea8e6;
+  --border:        #2a2e35;
+  --border-strong: #343943;
+  --selection-bg:  #2f3742;
+  --selection-fg:  #eceef2;
+  --code-bg:       #1c1f24;
+  --code-border:   #2a2e35;
+  --icon-invert:   1;
+
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg:            #{$white};
+  --bg-subtle:     #fafafa;
+  --text:          #{$darkGray};
+  --text-strong:   #{$darkerGray};
+  --text-muted:    #{$gray};
+  --link:          #{$blue};
+  --border:        #{$lightGray};
+  --border-strong: #ddd;
+  --selection-bg:  #{$lightGray};
+  --selection-fg:  #{$black};
+  --code-bg:       #efefef;
+  --code-border:   #ddd;
+  --icon-invert:   0;
+
+  color-scheme: light;
+}
+
 /**************/
 /* BASE RULES */
 /**************/
@@ -18,9 +62,11 @@ html {
 }
 
 body {
-	background: $white;
+  background: var(--bg);
   font: 18px/1.4 $helvetica;
-  color: $darkGray;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -32,7 +78,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $helveticaNeue;
-  color: $darkerGray;
+  color: var(--text-strong);
   font-weight: bold;
 
   line-height: 1.7;
@@ -61,7 +107,7 @@ h3 {
 
 h4 {
   font-size: 18px;
-  color: $gray;
+  color: var(--text-muted);
 }
 
 p {
@@ -69,11 +115,12 @@ p {
 }
 
 a {
-  color: $blue;
+  color: var(--link);
   text-decoration: none;
-	cursor: pointer;
+  cursor: pointer;
   &:hover, &:active {
-    color: $blue;
+    color: var(--link);
+    text-decoration: underline;
   }
 }
 
@@ -117,17 +164,23 @@ img {
 
 .date {
   font-style: italic;
-  color: $gray;
+  color: var(--text-muted);
 }
 
 // Specify the color of the selection
 ::-moz-selection {
-  color: $black;
-  background: $lightGray;
+  color: var(--selection-fg);
+  background: var(--selection-bg);
 }
 ::selection {
-  color: $black;
-  background: $lightGray;
+  color: var(--selection-fg);
+  background: var(--selection-bg);
+}
+
+// Visible focus ring for keyboard users
+:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
 }
 
 // Nicolas Gallagher's micro clearfix hack
@@ -156,7 +209,7 @@ img {
 
 .masthead {
   padding: 20px 0;
-  border-bottom: 1px solid $lightGray;
+  border-bottom: 1px solid var(--border);
 
   @include mobile {
     text-align: center;
@@ -192,7 +245,7 @@ img {
 
 .site-name {
   margin: 0;
-  color: $darkGray;
+  color: var(--text-strong);
   cursor: pointer;
   font-family: $helveticaNeue;
   font-weight: 300;
@@ -202,7 +255,7 @@ img {
 
 .site-description {
   margin: -5px 0 0 0;
-  color: $gray;
+  color: var(--text-muted);
   font-size: 16px;
 
   @include mobile {
@@ -215,25 +268,103 @@ nav {
   margin-top: 23px; // @TODO: Vertically middle align
   font-family: $helveticaNeue;
   font-size: 18px;
+  display: flex;
+  align-items: center;
 
   @include mobile {
     float: none;
-    margin-top: 9px;
-    display: block;
+    margin-top: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
     font-size: 16px;
   }
 
   a {
     margin-left: 20px;
-    color: $darkGray;
+    color: var(--text);
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
 
+    &:hover, &:active {
+      color: var(--link);
+      text-decoration: none;
+    }
+
     @include mobile {
       margin: 0 10px;
-      color: $blue;
+      color: var(--link);
     }
+  }
+}
+
+//
+// .theme-toggle
+//
+
+.theme-toggle {
+  margin-left: 20px;
+  padding: 5px;
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 0;
+  border-radius: 5px;
+
+  &:hover {
+    color: var(--link);
+  }
+
+  @include mobile {
+    margin: 0 10px;
+  }
+
+  svg {
+    display: block;
+  }
+}
+
+// The button offers the theme you'd switch to: a sun while dark (the
+// default), a moon once light has been chosen.
+.theme-toggle .icon-sun { display: block; }
+.theme-toggle .icon-moon { display: none; }
+
+:root[data-theme="light"] {
+  .theme-toggle .icon-sun { display: none; }
+  .theme-toggle .icon-moon { display: block; }
+}
+
+//
+// .headshot
+//
+// The source photo (609x837) is a half-body shot, so the box below crops it
+// down to head-and-shoulders: it shows the region x 56-526, y 40-600 of the
+// original. The offsets are percentages of the box, so resizing it keeps the
+// same crop as long as the 210:250 ratio is preserved.
+
+.headshot {
+  position: relative;
+  float: right;
+  width: 210px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 5px 0 24px 30px;
+  background: var(--bg-subtle);
+
+  img {
+    position: absolute;
+    width: 129.5%;
+    max-width: none;
+    height: auto;
+    left: -11.9%;
+    top: -7.2%;
+  }
+
+  @include mobile {
+    float: none;
+    margin: 0 auto 24px;
   }
 }
 
@@ -243,7 +374,7 @@ nav {
 
 .posts > .post {
   padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
+  border-bottom: 1px solid var(--border);
 }
 
 .posts > .post:last-child {
@@ -254,9 +385,9 @@ nav {
 .post {
   blockquote {
     margin: 1.8em .8em;
-    border-left: 2px solid $gray;
+    border-left: 2px solid var(--text-muted);
     padding: 0.1em 1em;
-    color: $gray;
+    color: var(--text-muted);
     font-size: 22px;
     font-style: italic;
   }
@@ -271,16 +402,138 @@ nav {
   }
 }
 
+//
+// .cv-list — education / experience entries
+//
+
+.cv-list {
+  margin: 15px 0 30px;
+}
+
+.cv-item {
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.cv-item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 15px;
+
+  @include mobile {
+    display: block;
+  }
+}
+
+.cv-item-title {
+  font-weight: bold;
+  color: var(--text-strong);
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.cv-item-date {
+  color: var(--text-muted);
+  font-size: 15px;
+  white-space: nowrap;
+
+  @include mobile {
+    display: block;
+    white-space: normal;
+  }
+}
+
+.cv-item-sub {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-top: 2px;
+}
+
+//
+// .pub-list — publications
+//
+
+.pub-note {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin: 0 0 20px;
+}
+
+.pub-list {
+  margin-bottom: 30px;
+}
+
+.pub {
+  padding-left: 15px;
+  border-left: 2px solid var(--border);
+  margin-bottom: 22px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.pub-title {
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 1.4;
+
+  a {
+    color: var(--text-strong);
+
+    &:hover, &:active {
+      color: var(--link);
+      text-decoration: none;
+    }
+  }
+}
+
+.pub-authors {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.5;
+  margin-top: 3px;
+
+  strong {
+    color: var(--text);
+  }
+}
+
+.pub-venue {
+  color: var(--text-muted);
+  font-size: 15px;
+  font-style: italic;
+  margin-top: 3px;
+}
+
+//
+// .footer
+//
+
 .wrapper-footer {
   margin-top: 50px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background-color: var(--bg-subtle);
 }
 
 footer {
   padding: 20px 0;
   text-align: center;
+}
+
+// The GitHub, email and X icons are dark circles with white glyphs, which
+// disappear against a dark footer. Inverting them yields a light circle with
+// a dark glyph. The brand-coloured icons are left alone.
+.svg-icon.github,
+.svg-icon.email,
+.svg-icon.twitter,
+.svg-icon.stackoverflow {
+  filter: invert(var(--icon-invert));
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS

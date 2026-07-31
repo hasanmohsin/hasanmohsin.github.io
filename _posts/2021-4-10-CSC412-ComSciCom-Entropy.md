@@ -3,7 +3,7 @@ layout: post
 title: Trying to Understand Entropy
 ---
 
-This post is going to try to answer the question: "What exactly is entropy"? 
+This post is going to try to answer the question: "What exactly is entropy?" 
 Mathematically, the question is answered easily enough. Suppose we have some probability distribution $p(x)$ over a state space with $m$ outcomes $\\{x_1, x_2, ... x_m\\}$. In this post we will stick with a discrete state space since they make the intuition more clear. The entropy $H$ is defined for such a distribution as:
 
 $$\begin{equation}
@@ -14,7 +14,7 @@ Where $\log$ is meant to denote the logarithm with base $e$.
 
 Ok, but what actually *is* the entropy? How can we understand it? It is the cornerstone of Information theory, is a fundamental quantity in statistical physics, and appears all over the place in Machine Learning, so the task seems worthwhile. 
 
-Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations are fair, they are a little imprecise. For instance, why do we need entropy to describe "uncertainty" in the random outcome when something like the variance can describe this perfectly well? It seems like we could come up with many *ad-hoc* formulae for something like uncertainty. For this reason, arguments such as these don't really convince me of why entropy is special. Instead, I will present what I think is the most intuitively satisfying picture of entropy: the so-called "Wallis derivation", presented in \([Jaynes, 2003](#References)\), pages 351-255. I will first derive the formula for entropy, and then reason through its appearance and utility in physics and information theory. 
+Generally it is described as some sort of measure of uncertainty, information, or surprise associated with a random event. It is also usually described as characterizing the width of a probability distribution. While these interpretations are fair, they are a little imprecise. For instance, why do we need entropy to describe "uncertainty" in the random outcome when something like the variance can describe this perfectly well? It seems like we could come up with many *ad-hoc* formulae for something like uncertainty. For this reason, arguments such as these don't really convince me of why entropy is special. Instead, I will present what I think is the most intuitively satisfying picture of entropy: the so-called "Wallis derivation", presented in \([Jaynes, 2003](#References)\). I will first derive the formula for entropy, and then reason through its appearance and utility in physics and information theory. 
 
 
 ## Coming up with Entropy 

@@ -6,7 +6,7 @@
 name: Mohsin Hasan
 
 # Short bio or description (displayed in the header)
-description: ML Researcher
+description: PhD Student, Mila
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: 
@@ -21,12 +21,12 @@ footer-links:
   email: mohsin.hasan@mila.quebec
   facebook:
   flickr:
-  github: hasanmohsin/hasanmohsin.github.io
+  github: hasanmohsin
   instagram:
-  linkedin: https://www.linkedin.com/in/mohsin-hasan-421891254/
+  linkedin: mohsin-hasan-421891254
   pinterest:
   rss: # just type anything here for a working RSS icon
-  twitter: https://twitter.com/mh_steps
+  twitter: mh_steps
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
