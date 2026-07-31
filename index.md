@@ -9,7 +9,7 @@ I'm an ML researcher working on generative modelling (especially diffusion and f
 
 I'm currently a PhD student at [Mila](https://mila.quebec/en/), supervised by [Yoshua Bengio](https://yoshuabengio.org/). Previously, I completed my master's thesis on Bayesian federated learning with [Pascal Poupart](https://cs.uwaterloo.ca/~ppoupart/).
 
-[CV (PDF)]({{ site.baseurl }}/MohsinHasanCV_2026_Spring.pdf)
+[CV (PDF)]({{ site.baseurl }}/cv.pdf)
 
 
 ### Education
@@ -62,14 +62,14 @@ I'm currently a PhD student at [Mila](https://mila.quebec/en/), supervised by [Y
 
 <div class="pub-list">
   <div class="pub">
-    <div class="pub-title"><a href="https://openreview.net/forum?id=0ZBqSpGn4m">Adaptive Order Policies for Masked Diffusion</a></div>
+    <div class="pub-title"><a href="https://arxiv.org/abs/2606.00295">Adaptive Order Policies for Masked Diffusion</a></div>
     <div class="pub-authors"><strong>Mohsin Hasan</strong>*, Jama Hussein Mohamud*, Mirco Ravanelli, Yoshua Bengio</div>
-    <div class="pub-venue">Preprint &middot; Workshop version, Jan 2026</div>
+    <div class="pub-venue">Preprint &middot; Under review, May 2026</div>
   </div>
 
   <div class="pub">
     <div class="pub-title"><a href="https://arxiv.org/abs/2601.10403">Discrete Feynman-Kac Correctors</a></div>
-    <div class="pub-authors"><strong>Mohsin Hasan</strong>, Viktor Ohanesian, Artem Gazizov, Yoshua Bengio, Alán Aspuru-Guzik, Roberto Bondesan, Marta Skreta, Kirill Neklyudov</div>
+    <div class="pub-authors"><strong>Mohsin Hasan</strong>*, Viktor Ohanesian*, Artem Gazizov, Yoshua Bengio, Alán Aspuru-Guzik, Roberto Bondesan, Marta Skreta, Kirill Neklyudov</div>
     <div class="pub-venue">Preprint &middot; Under review, Jan 2026</div>
   </div>
 

@@ -24,6 +24,8 @@
   --text-strong:   #eceef2;
   --text-muted:    #8b9199;
   --link:          #6ea8e6;
+  --accent:        #5fbfae;
+  --accent-dim:    #2c4a45;
   --border:        #2a2e35;
   --border-strong: #343943;
   --selection-bg:  #2f3742;
@@ -42,6 +44,8 @@
   --text-strong:   #{$darkerGray};
   --text-muted:    #{$gray};
   --link:          #{$blue};
+  --accent:        #1c7d6d;
+  --accent-dim:    #cfe6e0;
   --border:        #{$lightGray};
   --border-strong: #ddd;
   --selection-bg:  #{$lightGray};
@@ -97,12 +101,16 @@ h1 {
   }
 }
 
+// Section headings carry the accent; h1 page titles stay neutral so the
+// hierarchy still reads as title-then-sections.
 h2 {
   font-size: 24px;
+  color: var(--accent);
 }
 
 h3 {
   font-size: 20px;
+  color: var(--accent);
 }
 
 h4 {
@@ -469,7 +477,7 @@ nav {
 
 .pub {
   padding-left: 15px;
-  border-left: 2px solid var(--border);
+  border-left: 2px solid var(--accent-dim);
   margin-bottom: 22px;
 
   &:last-child {
