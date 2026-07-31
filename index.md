@@ -107,6 +107,6 @@ I'm currently a PhD student at [Mila](https://mila.quebec/en/), supervised by [Y
 
 ### Contact and Links
 
-[mohsin.hasan@mila.quebec](mailto:mohsin.hasan@mila.quebec)
+[hasanmohsin19@gmail.com](mailto:hasanmohsin19@gmail.com)
 
 [GitHub](https://github.com/hasanmohsin) &nbsp;·&nbsp; [LinkedIn](https://www.linkedin.com/in/mohsin-hasan-421891254/) &nbsp;·&nbsp; [X](https://x.com/mh_steps)
