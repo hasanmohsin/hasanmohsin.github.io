@@ -1,7 +1,12 @@
     <meta charset="utf-8" />
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    <!-- Declares that this page styles both schemes itself. Without it, Android
+         WebView (the in-app browser used by X and others) algorithmically
+         darkens the light variant, forcing it black and mangling the icons. -->
+    <meta name="color-scheme" content="dark light">
 
     {% if page.excerpt %}
     <meta name="description" content="{{ page.excerpt| strip_html }}" />

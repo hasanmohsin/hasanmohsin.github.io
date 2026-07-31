@@ -20,9 +20,9 @@
 :root {
   --bg:            #16181c;
   --bg-subtle:     #1c1f24;
-  --text:          #c8ccd4;
-  --text-strong:   #eceef2;
-  --text-muted:    #8b9199;
+  --text:          #e6eaf0;
+  --text-strong:   #f7f9fb;
+  --text-muted:    #a0a7b1;
   --link:          #6ea8e6;
   --accent:        #5fbfae;
   --accent-dim:    #2c4a45;
@@ -319,13 +319,19 @@ nav {
   cursor: pointer;
   line-height: 0;
   border-radius: 5px;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
 
   &:hover {
     color: var(--link);
   }
 
+  // 18px icon + 13px padding either side = a 44px tap target, the minimum
+  // size a finger can reliably hit. The padding is invisible (no background).
   @include mobile {
-    margin: 0 10px;
+    margin: 0 4px;
+    padding: 13px;
   }
 
   svg {

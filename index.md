@@ -105,7 +105,7 @@ I'm currently a PhD student at [Mila](https://mila.quebec/en/), supervised by [Y
 </div>
 
 
-### Contact and links
+### Contact and Links
 
 [mohsin.hasan@mila.quebec](mailto:mohsin.hasan@mila.quebec)
 
